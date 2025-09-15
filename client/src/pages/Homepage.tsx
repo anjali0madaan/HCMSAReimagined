@@ -9,40 +9,22 @@ import { ArrowRight, Users, Calendar, FileText, Award } from "lucide-react";
 import maleDoctor from "@assets/generated_images/Male_doctor_portrait_7aebea1c.png";
 import femaleDoctor from "@assets/generated_images/Female_doctor_portrait_2f72cef9.png";
 import seniorDoctor from "@assets/generated_images/Senior_doctor_portrait_9fbac1bb.png";
+import { newsArticles, events } from "@shared/data";
 
 export default function Homepage() {
-  // TODO: Remove mock data when implementing real backend
-  const latestNews = [
-    {
-      id: 1,
-      title: "HCMSA Annual General Meeting 2024 Scheduled",
-      excerpt: "The annual general meeting will be held on March 15, 2024, at the HCMSA headquarters. All members are cordially invited to participate in the proceedings and contribute to the association's future direction.",
-      date: "March 10, 2024",
-      category: "Announcements",
-      isNew: true
-    },
-    {
-      id: 2,
-      title: "New CME Program Launch for Continuing Medical Education", 
-      excerpt: "HCMSA is proud to announce the launch of a comprehensive Continuing Medical Education program designed to enhance the professional development of our members.",
-      date: "March 8, 2024",
-      category: "Education"
-    },
-    {
-      id: 3,
-      title: "Health Department Policy Updates for Civil Medical Officers",
-      excerpt: "Important policy updates have been released by the Haryana Health Department affecting promotion criteria and service conditions for all civil medical officers.",
-      date: "March 5, 2024", 
-      category: "Policy Updates"
-    },
-    {
-      id: 4,
-      title: "Medical Equipment Modernization Initiative Launched",
-      excerpt: "A comprehensive initiative to upgrade medical equipment across all civil hospitals in Haryana has been announced by the health department.",
-      date: "March 3, 2024",
-      category: "Infrastructure"
-    }
-  ];
+  // Use shared data and show only the first 4 items on homepage
+  const latestNews = newsArticles.slice(0, 4).map(article => ({
+    id: article.id,
+    title: article.title,
+    excerpt: article.excerpt,
+    date: new Date(article.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }),
+    category: article.category,
+    isNew: article.isNew
+  }));
 
   const leadership = [
     {
@@ -74,41 +56,21 @@ export default function Homepage() {
     }
   ];
 
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: "Annual Medical Conference 2024",
-      description: "Join us for our flagship annual conference featuring keynote speakers, workshops, and networking opportunities for medical professionals.",
-      date: "April 15-16, 2024",
-      time: "9:00 AM - 5:00 PM",
-      venue: "HCMSA Convention Center, Panchkula",
-      category: "Conference",
-      registrationOpen: true,
-      attendees: 245
-    },
-    {
-      id: 2,
-      title: "CPR & Emergency Response Training",
-      description: "Hands-on training session for CPR certification and emergency medical response techniques for healthcare professionals.",
-      date: "March 25, 2024",
-      time: "10:00 AM - 4:00 PM", 
-      venue: "Civil Hospital, Sector 6",
-      category: "Training",
-      registrationOpen: true,
-      attendees: 58
-    },
-    {
-      id: 3,
-      title: "Health Policy Discussion Forum",
-      description: "Interactive discussion on recent health policy changes and their impact on civil medical services in Haryana.",
-      date: "March 20, 2024",
-      time: "2:00 PM - 5:00 PM",
-      venue: "HCMSA Auditorium", 
-      category: "Forum",
-      registrationOpen: false,
-      attendees: 89
-    }
-  ];
+  const upcomingEvents = events.slice(0, 3).map(event => ({
+    id: event.id,
+    title: event.title,
+    description: event.description,
+    date: new Date(event.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }),
+    time: event.time,
+    venue: event.venue,
+    category: event.category,
+    registrationOpen: event.registrationOpen,
+    attendees: event.attendees
+  }));
 
   const quickStats = [
     { icon: Users, label: "Active Members", value: "2,500+", testId: "stat-members" },
