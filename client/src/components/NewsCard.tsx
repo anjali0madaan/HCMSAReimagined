@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
 
 interface NewsCardProps {
   id: number;
@@ -13,12 +14,18 @@ interface NewsCardProps {
 }
 
 export default function NewsCard({ id, title, excerpt, date, category, isNew = false }: NewsCardProps) {
+  const [, setLocation] = useLocation();
+  
   const handleReadMore = () => {
-    console.log("Read more clicked for news:", id);
+    setLocation(`/news/${id}`);
+  };
+  
+  const handleCardClick = () => {
+    setLocation(`/news/${id}`);
   };
 
   return (
-    <Card className="hover-elevate group cursor-pointer h-full">
+    <Card className="hover-elevate group cursor-pointer h-full" onClick={handleCardClick}>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between mb-2">
           <Badge variant="secondary" className="text-xs">

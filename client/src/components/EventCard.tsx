@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Clock, Users } from "lucide-react";
+import { useLocation } from "wouter";
 
 interface EventCardProps {
   id: number;
@@ -26,16 +27,24 @@ export default function EventCard({
   registrationOpen,
   attendees 
 }: EventCardProps) {
-  const handleRegister = () => {
-    console.log("Registration clicked for event:", id);
+  const [, setLocation] = useLocation();
+  
+  const handleRegister = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    window.open("https://portal.hscmsassociation.co.in", "_blank");
   };
 
-  const handleViewDetails = () => {
-    console.log("View details clicked for event:", id);
+  const handleViewDetails = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLocation(`/events/${id}`);
+  };
+  
+  const handleCardClick = () => {
+    setLocation(`/events/${id}`);
   };
 
   return (
-    <Card className="hover-elevate h-full">
+    <Card className="hover-elevate h-full cursor-pointer" onClick={handleCardClick}>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between mb-2">
           <Badge variant="outline" className="text-xs">
