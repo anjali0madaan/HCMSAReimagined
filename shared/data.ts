@@ -27,6 +27,22 @@ export interface Event {
   registrationDeadline?: string;
 }
 
+export interface Publication {
+  id: number;
+  title: string;
+  description: string;
+  content: string;
+  category: string;
+  publishedDate: string;
+  fileSize: string;
+  fileFormat: string;
+  downloadUrl: string;
+  isNew?: boolean;
+  isImportant?: boolean;
+  department: string;
+  referenceNumber?: string;
+}
+
 export const newsArticles: NewsArticle[] = [
   {
     id: 1,
@@ -296,6 +312,310 @@ export const events: Event[] = [
   }
 ];
 
+export const publications: Publication[] = [
+  {
+    id: 1,
+    title: "Government Resolution - Revised Service Conditions for Civil Medical Officers",
+    description: "Updated service conditions, promotion criteria, and benefits structure for civil medical officers in Haryana effective from January 2024.",
+    content: `
+      <h2>Government Resolution No. HMS-2024/CR/001</h2>
+      <p><strong>Subject:</strong> Revised Service Conditions for Civil Medical Officers - Implementation Guidelines</p>
+      
+      <h3>Key Updates:</h3>
+      <ul>
+        <li><strong>Promotion Criteria:</strong> Revised time-bound promotion structure with clear eligibility requirements</li>
+        <li><strong>Pay Structure:</strong> Implementation of 7th Pay Commission recommendations with medical allowances</li>
+        <li><strong>Transfer Policy:</strong> Updated transfer guidelines with preference for family stations</li>
+        <li><strong>Leave Benefits:</strong> Enhanced medical leave provisions and study leave opportunities</li>
+      </ul>
+
+      <h3>Implementation Details:</h3>
+      <p>All civil medical officers are required to review the updated service conditions and submit acknowledgment through the online portal by March 31, 2024.</p>
+
+      <h3>Contact Information:</h3>
+      <p>For clarifications, contact the Directorate of Health Services at <strong>0172-2864200</strong> or email <strong>dhs.haryana@gov.in</strong></p>
+      
+      <h3>Effective Date:</h3>
+      <p>These revised conditions are effective from January 1, 2024, and supersede all previous notifications.</p>
+    `,
+    category: "Government Resolution",
+    publishedDate: "2024-01-15",
+    fileSize: "2.4 MB",
+    fileFormat: "PDF",
+    downloadUrl: "/downloads/govt-resolution-service-conditions-2024.pdf",
+    isNew: true,
+    isImportant: true,
+    department: "Directorate of Health Services",
+    referenceNumber: "HMS-2024/CR/001"
+  },
+  {
+    id: 2,
+    title: "Clinical Guidelines for Emergency Medical Response in Rural Areas",
+    description: "Comprehensive clinical guidelines for emergency medical response protocols specifically designed for rural healthcare settings in Haryana.",
+    content: `
+      <h2>Clinical Guidelines for Emergency Medical Response</h2>
+      <p><strong>Document Version:</strong> 3.0 | <strong>Effective Date:</strong> February 2024</p>
+      
+      <h3>Overview:</h3>
+      <p>These guidelines provide standardized protocols for emergency medical response in rural healthcare facilities across Haryana, ensuring consistent quality care delivery.</p>
+
+      <h3>Key Protocols Covered:</h3>
+      <ul>
+        <li>Cardiac emergency response and stabilization procedures</li>
+        <li>Trauma management protocols for road accidents</li>
+        <li>Maternal emergency care guidelines</li>
+        <li>Pediatric emergency response procedures</li>
+        <li>Poison management and antidote administration</li>
+        <li>Inter-facility transfer protocols</li>
+      </ul>
+
+      <h3>Equipment and Resource Requirements:</h3>
+      <p>Detailed inventory of essential equipment and medications required for effective emergency response in resource-limited settings.</p>
+
+      <h3>Training Requirements:</h3>
+      <p>All medical officers working in rural areas must complete the associated training program within 6 months of appointment.</p>
+
+      <h3>Quality Assurance:</h3>
+      <p>Regular audits will be conducted to ensure compliance with these guidelines. Feedback and suggestions for improvement are welcomed.</p>
+    `,
+    category: "Clinical Guidelines",
+    publishedDate: "2024-02-10",
+    fileSize: "8.7 MB",
+    fileFormat: "PDF",
+    downloadUrl: "/downloads/emergency-response-guidelines-2024.pdf",
+    isNew: true,
+    isImportant: false,
+    department: "Emergency Medical Services Division",
+    referenceNumber: "EMS/CG/2024/02"
+  },
+  {
+    id: 3,
+    title: "Medical Leave Application Form (Revised 2024)",
+    description: "Updated medical leave application form with new categories and approval workflow for all civil medical officers.",
+    content: `
+      <h2>Medical Leave Application Form - Revised 2024</h2>
+      <p><strong>Form Number:</strong> ML-2024/Rev.01 | <strong>Effective Date:</strong> January 1, 2024</p>
+      
+      <h3>New Features in Revised Form:</h3>
+      <ul>
+        <li>Digital submission capability through online portal</li>
+        <li>Enhanced leave categories including mental health leave</li>
+        <li>Simplified approval workflow with reduced processing time</li>
+        <li>Integration with attendance management system</li>
+        <li>Medical certificate upload functionality</li>
+      </ul>
+
+      <h3>Leave Categories Available:</h3>
+      <ul>
+        <li><strong>Medical Leave:</strong> For personal medical treatment (up to 180 days per year)</li>
+        <li><strong>Attendant Leave:</strong> For caring for family members (up to 30 days per year)</li>
+        <li><strong>Maternity/Paternity Leave:</strong> As per government guidelines</li>
+        <li><strong>Mental Health Leave:</strong> For stress-related conditions (up to 21 days per year)</li>
+        <li><strong>Emergency Medical Leave:</strong> For urgent medical situations</li>
+      </ul>
+
+      <h3>Required Documents:</h3>
+      <ul>
+        <li>Medical certificate from registered medical practitioner</li>
+        <li>Previous leave records (if applicable)</li>
+        <li>Supporting documents for emergency cases</li>
+      </ul>
+
+      <h3>Processing Timeline:</h3>
+      <p>Normal applications: 3-5 working days | Emergency applications: 24-48 hours</p>
+
+      <h3>How to Submit:</h3>
+      <ol>
+        <li>Fill the form completely with all required information</li>
+        <li>Attach necessary medical documents</li>
+        <li>Submit through HCMSA portal or to immediate supervisor</li>
+        <li>Track status through online dashboard</li>
+      </ol>
+    `,
+    category: "Forms",
+    publishedDate: "2024-01-01",
+    fileSize: "890 KB",
+    fileFormat: "PDF",
+    downloadUrl: "/downloads/medical-leave-form-2024.pdf",
+    isNew: false,
+    isImportant: false,
+    department: "Human Resources Division",
+    referenceNumber: "HR/ML/2024/001"
+  },
+  {
+    id: 4,
+    title: "Annual Health Report 2023 - Haryana Civil Medical Services",
+    description: "Comprehensive annual report highlighting achievements, statistics, and future plans for civil medical services in Haryana.",
+    content: `
+      <h2>Annual Health Report 2023</h2>
+      <p><strong>Haryana Civil Medical Services</strong></p>
+      <p><strong>Publication Date:</strong> January 2024 | <strong>Reporting Period:</strong> January - December 2023</p>
+      
+      <h3>Executive Summary:</h3>
+      <p>The year 2023 marked significant progress in healthcare delivery across Haryana, with notable improvements in maternal health, child immunization, and emergency medical services.</p>
+
+      <h3>Key Achievements:</h3>
+      <ul>
+        <li><strong>Patient Care:</strong> Served over 12.5 million patients across all civil hospitals</li>
+        <li><strong>Emergency Services:</strong> 98.5% response rate for critical emergency cases</li>
+        <li><strong>Maternal Health:</strong> Reduced maternal mortality rate by 18% compared to 2022</li>
+        <li><strong>Child Health:</strong> Achieved 95% immunization coverage across rural areas</li>
+        <li><strong>Infrastructure:</strong> Upgraded medical equipment in 85 facilities</li>
+      </ul>
+
+      <h3>Statistical Highlights:</h3>
+      <ul>
+        <li>Total surgeries performed: 245,000</li>
+        <li>Outpatient consultations: 8.2 million</li>
+        <li>Diagnostic tests conducted: 3.8 million</li>
+        <li>Health camps organized: 1,250</li>
+        <li>Medical officers trained: 850</li>
+      </ul>
+
+      <h3>Future Initiatives for 2024:</h3>
+      <ul>
+        <li>Telemedicine expansion to remote areas</li>
+        <li>AI-powered diagnostic support systems</li>
+        <li>Enhanced mental health services</li>
+        <li>Preventive healthcare programs</li>
+        <li>Medical education and research initiatives</li>
+      </ul>
+
+      <h3>Financial Overview:</h3>
+      <p>Budget allocation for 2023: Rs. 2,850 crores | Utilization rate: 97.3%</p>
+
+      <h3>Acknowledgments:</h3>
+      <p>We thank all civil medical officers, healthcare staff, and support personnel for their dedication and service to the people of Haryana.</p>
+    `,
+    category: "Annual Reports",
+    publishedDate: "2024-01-25",
+    fileSize: "15.2 MB",
+    fileFormat: "PDF",
+    downloadUrl: "/downloads/annual-health-report-2023.pdf",
+    isNew: true,
+    isImportant: false,
+    department: "Directorate of Health Services",
+    referenceNumber: "DHS/AR/2023"
+  },
+  {
+    id: 5,
+    title: "COVID-19 Protocol Updates - Post-Pandemic Guidelines",
+    description: "Updated COVID-19 management protocols and post-pandemic healthcare delivery guidelines for civil medical services.",
+    content: `
+      <h2>COVID-19 Protocol Updates</h2>
+      <p><strong>Post-Pandemic Healthcare Delivery Guidelines</strong></p>
+      <p><strong>Version:</strong> 5.0 | <strong>Effective Date:</strong> March 2024</p>
+      
+      <h3>Current Status Assessment:</h3>
+      <p>With COVID-19 transitioning to endemic status, these guidelines provide updated protocols for ongoing management and preparedness.</p>
+
+      <h3>Updated Treatment Protocols:</h3>
+      <ul>
+        <li>Revised isolation and quarantine guidelines</li>
+        <li>Updated medication protocols for different severity levels</li>
+        <li>Enhanced home care management guidelines</li>
+        <li>Modified hospital admission criteria</li>
+        <li>Long COVID management and rehabilitation protocols</li>
+      </ul>
+
+      <h3>Preventive Measures:</h3>
+      <ul>
+        <li>Vaccination schedules for different age groups</li>
+        <li>High-risk population monitoring</li>
+        <li>Workplace safety protocols for healthcare settings</li>
+        <li>Community awareness and education programs</li>
+      </ul>
+
+      <h3>Emergency Preparedness:</h3>
+      <ul>
+        <li>Early warning systems for variant detection</li>
+        <li>Surge capacity planning for healthcare facilities</li>
+        <li>Supply chain management for essential medications</li>
+        <li>Staff deployment and training protocols</li>
+      </ul>
+
+      <h3>Data Management:</h3>
+      <p>Continued surveillance and reporting requirements for tracking disease trends and informing policy decisions.</p>
+
+      <h3>Inter-facility Coordination:</h3>
+      <p>Enhanced coordination protocols between primary, secondary, and tertiary care facilities for optimal patient management.</p>
+    `,
+    category: "Health Protocols",
+    publishedDate: "2024-03-05",
+    fileSize: "3.6 MB",
+    fileFormat: "PDF",
+    downloadUrl: "/downloads/covid-protocols-2024.pdf",
+    isNew: true,
+    isImportant: true,
+    department: "Epidemiology Division",
+    referenceNumber: "EPI/COVID/2024/03"
+  },
+  {
+    id: 6,
+    title: "Transfer and Posting Guidelines - Civil Medical Officers 2024",
+    description: "Comprehensive guidelines for transfer and posting procedures, preferences, and policies for civil medical officers.",
+    content: `
+      <h2>Transfer and Posting Guidelines 2024</h2>
+      <p><strong>Civil Medical Officers - Haryana</strong></p>
+      <p><strong>Effective Date:</strong> April 1, 2024 | <strong>Version:</strong> 2.0</p>
+      
+      <h3>General Principles:</h3>
+      <ul>
+        <li>Merit-based postings with transparent selection criteria</li>
+        <li>Preference for family welfare and hardship considerations</li>
+        <li>Balanced distribution across urban and rural areas</li>
+        <li>Specialty-based assignments for specialized positions</li>
+      </ul>
+
+      <h3>Transfer Categories:</h3>
+      <ul>
+        <li><strong>Routine Transfer:</strong> Normal administrative transfers</li>
+        <li><strong>Compassionate Transfer:</strong> On grounds of family hardship</li>
+        <li><strong>Administrative Transfer:</strong> For administrative reasons</li>
+        <li><strong>Mutual Transfer:</strong> Exchange between two officers</li>
+        <li><strong>Promotional Transfer:</strong> Upon promotion to higher positions</li>
+      </ul>
+
+      <h3>Application Process:</h3>
+      <ol>
+        <li>Submit online application through HCMSA portal</li>
+        <li>Attach required supporting documents</li>
+        <li>Obtain clearance from current posting station</li>
+        <li>Await processing and approval</li>
+        <li>Report to new posting within stipulated time</li>
+      </ol>
+
+      <h3>Timeline and Processing:</h3>
+      <ul>
+        <li>Application deadline: Last working day of each quarter</li>
+        <li>Processing time: 30-45 working days</li>
+        <li>Emergency cases: Expedited processing available</li>
+      </ul>
+
+      <h3>Required Documents:</h3>
+      <ul>
+        <li>Transfer application form</li>
+        <li>Service record and performance reports</li>
+        <li>Medical fitness certificate</li>
+        <li>No objection certificate from current station</li>
+        <li>Supporting documents for specific transfer grounds</li>
+      </ul>
+
+      <h3>Appeals Process:</h3>
+      <p>Officers can appeal transfer decisions through the designated appellate authority within 30 days of notification.</p>
+    `,
+    category: "Administrative Guidelines",
+    publishedDate: "2024-03-20",
+    fileSize: "4.1 MB",
+    fileFormat: "PDF",
+    downloadUrl: "/downloads/transfer-posting-guidelines-2024.pdf",
+    isNew: false,
+    isImportant: true,
+    department: "Administrative Services",
+    referenceNumber: "AS/TP/2024/001"
+  }
+];
+
 // Helper functions to get individual items
 export const getNewsById = (id: number): NewsArticle | undefined => {
   return newsArticles.find(article => article.id === id);
@@ -303,4 +623,8 @@ export const getNewsById = (id: number): NewsArticle | undefined => {
 
 export const getEventById = (id: number): Event | undefined => {
   return events.find(event => event.id === id);
+};
+
+export const getPublicationById = (id: number): Publication | undefined => {
+  return publications.find(publication => publication.id === id);
 };
