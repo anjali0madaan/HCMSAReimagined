@@ -8,10 +8,9 @@ export default function Header() {
 
   const navigationItems = [
     { name: "Home", href: "#" },
-    { name: "About HCMSA", href: "#about" },
+    { name: "About", href: "#about" },
     { name: "News", href: "#news" },
     { name: "Events", href: "#events" },
-    { name: "Member Services", href: "#services" },
     { name: "Publications", href: "#publications" },
     { name: "Gallery", href: "#gallery" },
     { name: "Contact", href: "#contact" },
