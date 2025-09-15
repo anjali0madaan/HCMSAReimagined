@@ -29,10 +29,6 @@ export default function EventCard({
 }: EventCardProps) {
   const [, setLocation] = useLocation();
   
-  const handleRegister = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    window.open("https://portal.hscmsassociation.co.in", "_blank");
-  };
 
   const handleViewDetails = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -101,16 +97,6 @@ export default function EventCard({
           >
             View Details
           </Button>
-          {registrationOpen && (
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={handleRegister}
-              data-testid={`button-register-${id}`}
-            >
-              Register
-            </Button>
-          )}
         </div>
       </CardContent>
     </Card>

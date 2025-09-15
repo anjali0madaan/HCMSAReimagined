@@ -7,12 +7,15 @@ import PublicationCard from "@/components/PublicationCard";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Calendar, FileText, Award } from "lucide-react";
+import { useLocation } from "wouter";
 import maleDoctor from "@assets/generated_images/Male_doctor_portrait_7aebea1c.png";
 import femaleDoctor from "@assets/generated_images/Female_doctor_portrait_2f72cef9.png";
 import seniorDoctor from "@assets/generated_images/Senior_doctor_portrait_9fbac1bb.png";
 import { newsArticles, events, publications } from "@shared/data";
 
 export default function Homepage() {
+  const [, setLocation] = useLocation();
+  
   // Use shared data and show only the first 4 items on homepage
   const latestNews = newsArticles.slice(0, 4).map(article => ({
     id: article.id,
@@ -88,7 +91,7 @@ export default function Homepage() {
   };
 
   const handleViewAllEvents = () => {
-    console.log("View all events clicked");
+    setLocation("/events");
   };
   
   const handleViewAllPublications = () => {

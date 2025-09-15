@@ -33,13 +33,9 @@ export default function EventDetail() {
   }
 
   const handleBack = () => {
-    setLocation("/");
+    setLocation("/events");
   };
 
-  const handleRegister = () => {
-    // In a real app, this would redirect to registration form or external portal
-    window.open("https://portal.hscmsassociation.co.in", "_blank");
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -60,21 +56,14 @@ export default function EventDetail() {
           {/* Event Header */}
           <Card className="mb-6">
             <CardHeader>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Badge variant="outline" data-testid="event-category">
-                    {event.category}
-                  </Badge>
-                  {event.registrationOpen && (
-                    <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                      Registration Open
-                    </Badge>
-                  )}
-                </div>
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" data-testid="event-category">
+                  {event.category}
+                </Badge>
                 {event.registrationOpen && (
-                  <Button onClick={handleRegister} data-testid="button-register-main">
-                    Register Now
-                  </Button>
+                  <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                    Registration Open
+                  </Badge>
                 )}
               </div>
               
@@ -171,20 +160,6 @@ export default function EventDetail() {
             </CardContent>
           </Card>
 
-          {/* Registration CTA */}
-          {event.registrationOpen && (
-            <Card className="mt-6 bg-primary/5 border-primary/20">
-              <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-semibold mb-2">Ready to Join?</h3>
-                <p className="text-muted-foreground mb-4">
-                  Don't miss out on this valuable opportunity. Register now to secure your spot.
-                </p>
-                <Button size="lg" onClick={handleRegister} data-testid="button-register-cta">
-                  Register for Event
-                </Button>
-              </CardContent>
-            </Card>
-          )}
 
           {/* Back Button at Bottom */}
           <div className="mt-8 text-center">
