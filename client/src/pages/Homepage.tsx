@@ -169,18 +169,22 @@ export default function Homepage() {
             <div className="flex flex-wrap justify-center gap-4">
               <Button 
                 size="lg"
-                onClick={() => handleQuickAction('membership')}
+                asChild
                 data-testid="button-join-membership"
               >
-                Join Membership
+                <a href="https://portal.hscmsassociation.co.in" target="_blank" rel="noopener noreferrer">
+                  Join Membership
+                </a>
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
-                onClick={() => handleQuickAction('member-services')}
+                asChild
                 data-testid="button-member-services"
               >
-                Member Services
+                <a href="https://portal.hscmsassociation.co.in" target="_blank" rel="noopener noreferrer">
+                  Member Services
+                </a>
               </Button>
               <Button 
                 variant="outline" 
@@ -276,10 +280,12 @@ export default function Homepage() {
                 Access your member dashboard, update profile, and manage membership details.
               </p>
               <Button 
-                onClick={() => handleQuickAction('member-portal')}
+                asChild
                 data-testid="button-member-portal"
               >
-                Access Portal
+                <a href="https://portal.hscmsassociation.co.in" target="_blank" rel="noopener noreferrer">
+                  Access Portal
+                </a>
               </Button>
             </div>
             <div className="bg-card border border-card-border rounded-lg p-6 hover-elevate">

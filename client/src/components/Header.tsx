@@ -12,7 +12,6 @@ export default function Header() {
     { name: "News", href: "#news" },
     { name: "Events", href: "#events" },
     { name: "Member Services", href: "#services" },
-    { name: "Recruitment", href: "#recruitment" },
     { name: "Publications", href: "#publications" },
     { name: "Gallery", href: "#gallery" },
     { name: "Contact", href: "#contact" },
@@ -32,9 +31,16 @@ export default function Header() {
             <Button variant="ghost" size="sm" data-testid="button-search">
               <Search className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="sm" data-testid="button-member-login">
-              <User className="h-4 w-4 mr-2" />
-              Member Login
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              asChild
+              data-testid="button-member-login"
+            >
+              <a href="https://portal.hscmsassociation.co.in" target="_blank" rel="noopener noreferrer">
+                <User className="h-4 w-4 mr-2" />
+                Member Login
+              </a>
             </Button>
           </div>
         </div>

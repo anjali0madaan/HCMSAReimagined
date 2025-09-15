@@ -22,11 +22,11 @@ export default function Footer() {
   ];
 
   const memberServices = [
-    { name: "Member Directory", href: "#directory" },
-    { name: "Professional Development", href: "#development" },
-    { name: "CME Programs", href: "#cme" },
-    { name: "Welfare Schemes", href: "#welfare" },
-    { name: "Grievance Portal", href: "#grievance" }
+    { name: "Member Directory", href: "https://portal.hscmsassociation.co.in", external: true },
+    { name: "Professional Development", href: "https://portal.hscmsassociation.co.in", external: true },
+    { name: "CME Programs", href: "https://portal.hscmsassociation.co.in", external: true },
+    { name: "Welfare Schemes", href: "https://portal.hscmsassociation.co.in", external: true },
+    { name: "Grievance Portal", href: "https://portal.hscmsassociation.co.in", external: true }
   ];
 
   const resources = [
@@ -104,7 +104,12 @@ export default function Footer() {
                       asChild
                       data-testid={`footer-service-${service.name.toLowerCase().replace(/ /g, '-')}`}
                     >
-                      <a href={service.href}>{service.name}</a>
+                      <a 
+                        href={service.href}
+                        {...(service.external && { target: "_blank", rel: "noopener noreferrer" })}
+                      >
+                        {service.name}
+                      </a>
                     </Button>
                   </li>
                 ))}
