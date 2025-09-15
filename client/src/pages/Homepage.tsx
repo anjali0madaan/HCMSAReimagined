@@ -3,13 +3,14 @@ import HeroSlider from "@/components/HeroSlider";
 import NewsCard from "@/components/NewsCard";
 import LeadershipProfile from "@/components/LeadershipProfile";
 import EventCard from "@/components/EventCard";
+import PublicationCard from "@/components/PublicationCard";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Calendar, FileText, Award } from "lucide-react";
 import maleDoctor from "@assets/generated_images/Male_doctor_portrait_7aebea1c.png";
 import femaleDoctor from "@assets/generated_images/Female_doctor_portrait_2f72cef9.png";
 import seniorDoctor from "@assets/generated_images/Senior_doctor_portrait_9fbac1bb.png";
-import { newsArticles, events } from "@shared/data";
+import { newsArticles, events, publications } from "@shared/data";
 
 export default function Homepage() {
   // Use shared data and show only the first 4 items on homepage
@@ -79,12 +80,19 @@ export default function Homepage() {
     { icon: Award, label: "Years of Service", value: "58", testId: "stat-years" }
   ];
 
+  // Get featured publications (first 3 items)
+  const featuredPublications = publications.slice(0, 3);
+  
   const handleViewAllNews = () => {
     console.log("View all news clicked");
   };
 
   const handleViewAllEvents = () => {
     console.log("View all events clicked");
+  };
+  
+  const handleViewAllPublications = () => {
+    console.log("View all publications clicked");
   };
 
   const handleQuickAction = (action: string) => {
@@ -229,8 +237,32 @@ export default function Homepage() {
         </div>
       </section>
 
+      {/* Publications Section */}
+      <section id="publications" className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-bold" data-testid="section-publications-title">
+              Publications & Documents
+            </h2>
+            <Button 
+              variant="outline"
+              onClick={handleViewAllPublications}
+              data-testid="button-view-all-publications"
+            >
+              View All Publications
+              <ArrowRight className="h-4 w-4 ml-2" />
+            </Button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredPublications.map((publication) => (
+              <PublicationCard key={publication.id} {...publication} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Quick Links Section */}
-      <section id="services" className="py-16">
+      <section id="services" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12" data-testid="section-services-title">
             Member Services & Quick Links
@@ -262,18 +294,7 @@ export default function Homepage() {
                 View Programs
               </Button>
             </div>
-            <div id="publications" className="bg-card border border-card-border rounded-lg p-6 hover-elevate">
-              <h3 className="font-semibold text-lg mb-3">Publications</h3>
-              <p className="text-muted-foreground mb-4">
-                Download circulars, guidelines, forms, and other important documents.
-              </p>
-              <Button 
-                onClick={() => handleQuickAction('publications')}
-                data-testid="button-publications"
-              >
-                View Publications
-              </Button>
-            </div>
+            {/* Publications section will be moved to its own dedicated section */}
           </div>
         </div>
       </section>
