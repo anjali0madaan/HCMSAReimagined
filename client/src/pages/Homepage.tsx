@@ -130,7 +130,7 @@ export default function Homepage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background scroll-smooth">
       <Header />
       
       {/* Hero Section */}
@@ -154,7 +154,7 @@ export default function Homepage() {
       </section>
 
       {/* About HCMSA Section */}
-      <section className="py-16">
+      <section id="about" className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6" data-testid="section-about-title">
@@ -200,7 +200,7 @@ export default function Homepage() {
       </section>
 
       {/* Latest News Section */}
-      <section className="py-16 bg-muted/30">
+      <section id="news" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-bold" data-testid="section-news-title">
@@ -244,7 +244,7 @@ export default function Homepage() {
       </section>
 
       {/* Events Section */}
-      <section className="py-16 bg-muted/30">
+      <section id="events" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-bold" data-testid="section-events-title">
@@ -268,7 +268,7 @@ export default function Homepage() {
       </section>
 
       {/* Quick Links Section */}
-      <section className="py-16">
+      <section id="services" className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12" data-testid="section-services-title">
             Member Services & Quick Links
@@ -300,7 +300,7 @@ export default function Homepage() {
                 View Programs
               </Button>
             </div>
-            <div className="bg-card border border-card-border rounded-lg p-6 hover-elevate">
+            <div id="publications" className="bg-card border border-card-border rounded-lg p-6 hover-elevate">
               <h3 className="font-semibold text-lg mb-3">Publications</h3>
               <p className="text-muted-foreground mb-4">
                 Download circulars, guidelines, forms, and other important documents.
@@ -311,6 +311,83 @@ export default function Homepage() {
               >
                 View Publications
               </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section id="gallery" className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4" data-testid="section-gallery-title">
+              Photo Gallery
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Explore moments from our events, conferences, and activities that showcase the vibrant community of HCMSA.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {/* Placeholder for gallery images */}
+            <div className="bg-card border border-card-border rounded-lg p-4 hover-elevate text-center">
+              <div className="bg-muted rounded-lg h-32 mb-2 flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Conference 2023</span>
+              </div>
+            </div>
+            <div className="bg-card border border-card-border rounded-lg p-4 hover-elevate text-center">
+              <div className="bg-muted rounded-lg h-32 mb-2 flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Training Session</span>
+              </div>
+            </div>
+            <div className="bg-card border border-card-border rounded-lg p-4 hover-elevate text-center">
+              <div className="bg-muted rounded-lg h-32 mb-2 flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Award Ceremony</span>
+              </div>
+            </div>
+            <div className="bg-card border border-card-border rounded-lg p-4 hover-elevate text-center">
+              <div className="bg-muted rounded-lg h-32 mb-2 flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Medical Camp</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4" data-testid="section-contact-title">
+              Contact Us
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Get in touch with HCMSA for inquiries, support, or to learn more about our services.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-card border border-card-border rounded-lg p-6 text-center">
+              <h3 className="font-semibold text-lg mb-3">Head Office</h3>
+              <p className="text-muted-foreground mb-2">
+                HCMSA Headquarters<br/>
+                Sector 6, Panchkula<br/>
+                Haryana - 134109
+              </p>
+            </div>
+            <div className="bg-card border border-card-border rounded-lg p-6 text-center">
+              <h3 className="font-semibold text-lg mb-3">Phone & Email</h3>
+              <p className="text-muted-foreground mb-2">
+                Phone: +91-172-2864241<br/>
+                Email: info@hcmsa.gov.in<br/>
+                Fax: +91-172-2864242
+              </p>
+            </div>
+            <div className="bg-card border border-card-border rounded-lg p-6 text-center">
+              <h3 className="font-semibold text-lg mb-3">Office Hours</h3>
+              <p className="text-muted-foreground mb-2">
+                Monday - Friday: 9:00 AM - 5:00 PM<br/>
+                Saturday: 9:00 AM - 1:00 PM<br/>
+                Sunday: Closed
+              </p>
             </div>
           </div>
         </div>
