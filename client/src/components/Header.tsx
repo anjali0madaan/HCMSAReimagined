@@ -28,7 +28,9 @@ export default function Header() {
       // Section - scroll with header offset
       const element = document.getElementById(sectionId);
       if (element) {
-        const headerHeight = 100; // Account for sticky header
+        // Dynamically calculate header height for better mobile support
+        const headerElement = document.querySelector('header');
+        const headerHeight = headerElement ? headerElement.offsetHeight + 20 : 120; // Add extra padding
         const elementPosition = element.offsetTop - headerHeight;
         window.scrollTo({ top: elementPosition, behavior: 'smooth' });
       }
