@@ -57,7 +57,7 @@ export default function Header() {
               asChild
               data-testid="button-member-login"
             >
-              <a href="https://portal.hscmsassociation.co.in" target="_blank" rel="noopener noreferrer">
+              <a href="https://hcmsassociation.co.in" target="_blank" rel="noopener noreferrer">
                 <User className="h-4 w-4 mr-2" />
                 Member Login
               </a>

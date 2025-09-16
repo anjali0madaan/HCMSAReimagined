@@ -22,11 +22,11 @@ export default function Footer() {
   ];
 
   const memberServices = [
-    { name: "Member Directory", href: "https://portal.hscmsassociation.co.in", external: true },
-    { name: "Professional Development", href: "https://portal.hscmsassociation.co.in", external: true },
-    { name: "CME Programs", href: "https://portal.hscmsassociation.co.in", external: true },
-    { name: "Welfare Schemes", href: "https://portal.hscmsassociation.co.in", external: true },
-    { name: "Grievance Portal", href: "https://portal.hscmsassociation.co.in", external: true }
+    { name: "Member Directory", href: "https://hcmsassociation.co.in", external: true },
+    { name: "Professional Development", href: "https://hcmsassociation.co.in", external: true },
+    { name: "CME Programs", href: "https://hcmsassociation.co.in", external: true },
+    { name: "Welfare Schemes", href: "https://hcmsassociation.co.in", external: true },
+    { name: "Grievance Portal", href: "https://hcmsassociation.co.in", external: true }
   ];
 
   const resources = [

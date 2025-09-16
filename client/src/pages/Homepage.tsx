@@ -145,7 +145,7 @@ export default function Homepage() {
                 asChild
                 data-testid="button-join-membership"
               >
-                <a href="https://portal.hscmsassociation.co.in" target="_blank" rel="noopener noreferrer">
+                <a href="https://hcmsassociation.co.in" target="_blank" rel="noopener noreferrer">
                   Join Membership
                 </a>
               </Button>
@@ -155,7 +155,7 @@ export default function Homepage() {
                 asChild
                 data-testid="button-member-services"
               >
-                <a href="https://portal.hscmsassociation.co.in" target="_blank" rel="noopener noreferrer">
+                <a href="https://hcmsassociation.co.in" target="_blank" rel="noopener noreferrer">
                   Member Services
                 </a>
               </Button>
@@ -280,7 +280,7 @@ export default function Homepage() {
                 asChild
                 data-testid="button-member-portal"
               >
-                <a href="https://portal.hscmsassociation.co.in" target="_blank" rel="noopener noreferrer">
+                <a href="https://hcmsassociation.co.in" target="_blank" rel="noopener noreferrer">
                   Access Portal
                 </a>
               </Button>

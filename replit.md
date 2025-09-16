@@ -10,11 +10,11 @@ Official website for Haryana Civil Medical Services Association (HCMSA) - a prof
 - **Publications Section**: Added complete publications section with individual document detail pages
 - **Menu Updates**: Simplified navigation menu (removed Member Services, changed "About HCMSA" to "About")
 - **News and Events Navigation**: Individual news articles and events now open on separate detail pages with full content when clicked from the homepage
-- **Integration with External Portal**: All member-related functionality (login, membership, services) now redirects to the existing membership portal at portal.hscmsassociation.co.in
+- **Integration with External Portal**: All member-related functionality (login, membership, services) now redirects to the existing membership portal at hcmsassociation.co.in
 
 ## User Preferences
 - **Portal Integration**: The website integrates with an existing membership portal rather than duplicating member functionality
-- **External Redirects**: All member-related actions redirect to portal.hscmsassociation.co.in
+- **External Redirects**: All member-related actions redirect to hcmsassociation.co.in
 - **No Recruitment**: Recruitment functionality has been intentionally removed from the navigation and content
 
 ## Project Architecture
@@ -41,5 +41,5 @@ Official website for Haryana Civil Medical Services Association (HCMSA) - a prof
 - `attached_assets/generated_images/`: Generated images for the website
 
 ## External Dependencies
-- Membership portal: portal.hscmsassociation.co.in
+- Membership portal: hcmsassociation.co.in
 - All member-related functionality handled by external portal
