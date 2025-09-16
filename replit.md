@@ -4,12 +4,13 @@
 Official website for Haryana Civil Medical Services Association (HCMSA) - a professional association serving civil medical officers and healthcare professionals in Haryana.
 
 ## Recent Changes
+- **Smooth Navigation**: Implemented smooth scrolling navigation for all sections (About, News, Events, Publications, Gallery, Contact) with proper header offset calculation
+- **Logo Update**: Updated header to use official HCMSA logo image instead of text-based logo
+- **Events System**: Removed all registration buttons from events and created comprehensive events listing page at /events
+- **Publications Section**: Added complete publications section with individual document detail pages
+- **Menu Updates**: Simplified navigation menu (removed Member Services, changed "About HCMSA" to "About")
 - **News and Events Navigation**: Individual news articles and events now open on separate detail pages with full content when clicked from the homepage
-- **Detail Page Implementation**: Created NewsDetail and EventDetail pages with complete layouts, metadata, and back navigation
-- **Data Structure**: Implemented shared data structure with full article content and event details
 - **Integration with External Portal**: All member-related functionality (login, membership, services) now redirects to the existing membership portal at portal.hscmsassociation.co.in
-- **Removed Recruitment Section**: Recruitment functionality has been removed from the website as requested
-- **External Portal Links**: Member login, join membership, and member services buttons now redirect to the external portal
 
 ## User Preferences
 - **Portal Integration**: The website integrates with an existing membership portal rather than duplicating member functionality
