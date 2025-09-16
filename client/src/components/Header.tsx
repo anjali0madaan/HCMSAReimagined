@@ -7,14 +7,32 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigationItems = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "News", href: "#news" },
-    { name: "Events", href: "#events" },
-    { name: "Publications", href: "#publications" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", sectionId: "" },
+    { name: "About", sectionId: "about" },
+    { name: "News", sectionId: "news" },
+    { name: "Events", sectionId: "events" },
+    { name: "Publications", sectionId: "publications" },
+    { name: "Gallery", sectionId: "gallery" },
+    { name: "Contact", sectionId: "contact" },
   ];
+
+  const handleNavigation = (sectionId: string) => {
+    // Close mobile menu when navigating
+    setIsMenuOpen(false);
+    
+    if (sectionId === "") {
+      // Home - scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Section - scroll with header offset
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const headerHeight = 100; // Account for sticky header
+        const elementPosition = element.offsetTop - headerHeight;
+        window.scrollTo({ top: elementPosition, behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <header className="bg-white dark:bg-background border-b border-border sticky top-0 z-50">
@@ -66,10 +84,10 @@ export default function Header() {
               <Button
                 key={item.name}
                 variant="ghost"
-                asChild
+                onClick={() => handleNavigation(item.sectionId)}
                 data-testid={`link-${item.name.toLowerCase().replace(/ /g, '-')}`}
               >
-                <a href={item.href}>{item.name}</a>
+                {item.name}
               </Button>
             ))}
           </nav>
@@ -94,11 +112,11 @@ export default function Header() {
                 <Button
                   key={item.name}
                   variant="ghost"
-                  asChild
+                  onClick={() => handleNavigation(item.sectionId)}
                   className="justify-start"
                   data-testid={`mobile-link-${item.name.toLowerCase().replace(/ /g, '-')}`}
                 >
-                  <a href={item.href}>{item.name}</a>
+                  {item.name}
                 </Button>
               ))}
             </div>
