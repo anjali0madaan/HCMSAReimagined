@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Search, User } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import hcmsaLogo from "@assets/hcmsa logo_1758028839137.jpeg";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,8 +66,13 @@ export default function Header() {
         {/* Main header */}
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center space-x-4">
-            <div className="bg-primary text-primary-foreground p-3 rounded-md">
-              <span className="font-bold text-xl">HCMSA</span>
+            <div className="flex items-center">
+              <img 
+                src={hcmsaLogo} 
+                alt="HCMSA Logo" 
+                className="h-12 w-auto"
+                data-testid="hcmsa-logo"
+              />
             </div>
             <div className="hidden md:block">
               <h1 className="text-xl font-bold text-foreground">
