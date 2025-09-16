@@ -76,6 +76,11 @@ export default function Header() {
                 data-testid="hcmsa-logo"
               />
             </div>
+            <div className="md:hidden">
+              <h1 className="text-lg font-bold text-foreground" data-testid="text-hcmsa-mobile">
+                HCMSA
+              </h1>
+            </div>
             <div className="hidden md:block">
               <h1 className="text-xl font-bold text-foreground">
                 Haryana Civil Medical Services Association
