@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { cmsService } from "./directus-client";
 import { fallbackCMSService } from "./cms-fallback";
+import { registerAdminRoutes } from "./admin-routes";
 
 // CMS Service that automatically falls back to static data if Directus is unavailable
 class CMSService {
@@ -281,6 +282,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     }
   });
+
+  // Register admin routes
+  registerAdminRoutes(app);
 
   const httpServer = createServer(app);
 
