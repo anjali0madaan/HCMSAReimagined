@@ -83,6 +83,18 @@ const cms = new CMSService();
 export async function registerRoutes(app: Express): Promise<Server> {
   // CMS API Routes
   
+  // Simple API key authentication middleware for write operations
+  const authenticateWrite = (req: any, res: any, next: any) => {
+    const apiKey = req.headers['x-api-key'];
+    const validApiKey = process.env.CMS_API_KEY || 'dev-api-key-change-in-production';
+    
+    if (apiKey === validApiKey) {
+      next();
+    } else {
+      res.status(401).json({ error: 'Unauthorized - valid API key required' });
+    }
+  };
+
   // News endpoints
   app.get("/api/cms/news", async (req, res) => {
     try {
@@ -108,7 +120,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/cms/news", async (req, res) => {
+  app.post("/api/cms/news", authenticateWrite, async (req, res) => {
     try {
       const newsItem = await cms.createNews(req.body);
       if (newsItem) {
@@ -146,7 +158,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/cms/events", async (req, res) => {
+  app.post("/api/cms/events", authenticateWrite, async (req, res) => {
     try {
       const eventItem = await cms.createEvent(req.body);
       if (eventItem) {
@@ -184,7 +196,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/cms/publications", async (req, res) => {
+  app.post("/api/cms/publications", authenticateWrite, async (req, res) => {
     try {
       const publication = await cms.createPublication(req.body);
       if (publication) {
@@ -222,7 +234,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/cms/leadership", async (req, res) => {
+  app.post("/api/cms/leadership", authenticateWrite, async (req, res) => {
     try {
       const leader = await cms.createLeadership(req.body);
       if (leader) {

@@ -1,7 +1,8 @@
 import { createDirectus, rest, readItems, createItem, updateItem, deleteItem, readItem } from '@directus/sdk';
 
-// Create Directus client instance
-const directusClient = createDirectus('http://localhost:8055').with(rest());
+// Create Directus client instance with environment configuration
+const DIRECTUS_URL = process.env.DIRECTUS_URL || 'http://localhost:8055';
+const directusClient = createDirectus(DIRECTUS_URL).with(rest());
 
 export interface NewsItem {
   id?: number;
@@ -62,78 +63,48 @@ export interface LeadershipItem {
 export class DirectusCMSService {
   // News methods
   async getNews(published: boolean = true): Promise<NewsItem[]> {
-    try {
-      const filter = published ? { published: { _eq: true } } : {};
-      const result = await directusClient.request(
-        readItems('news', {
-          fields: ['*'],
-          filter,
-          sort: ['-date_published', '-date_created']
-        })
-      );
-      return result as NewsItem[];
-    } catch (error) {
-      console.error('Error fetching news:', error);
-      return [];
-    }
+    const filter = published ? { published: { _eq: true } } : {};
+    const result = await directusClient.request(
+      readItems('news', {
+        fields: ['*'],
+        filter,
+        sort: ['-date_published', '-date_created']
+      })
+    );
+    return result as NewsItem[];
   }
 
   async getNewsItem(id: number): Promise<NewsItem | null> {
-    try {
-      const result = await directusClient.request(readItem('news', id));
-      return result as NewsItem;
-    } catch (error) {
-      console.error('Error fetching news item:', error);
-      return null;
-    }
+    const result = await directusClient.request(readItem('news', id));
+    return result as NewsItem;
   }
 
   async createNews(data: Omit<NewsItem, 'id'>): Promise<NewsItem | null> {
-    try {
-      const result = await directusClient.request(createItem('news', data));
-      return result as NewsItem;
-    } catch (error) {
-      console.error('Error creating news item:', error);
-      return null;
-    }
+    const result = await directusClient.request(createItem('news', data));
+    return result as NewsItem;
   }
 
   // Events methods
   async getEvents(published: boolean = true): Promise<EventItem[]> {
-    try {
-      const filter = published ? { published: { _eq: true } } : {};
-      const result = await directusClient.request(
-        readItems('events', {
-          fields: ['*'],
-          filter,
-          sort: ['event_date']
-        })
-      );
-      return result as EventItem[];
-    } catch (error) {
-      console.error('Error fetching events:', error);
-      return [];
-    }
+    const filter = published ? { published: { _eq: true } } : {};
+    const result = await directusClient.request(
+      readItems('events', {
+        fields: ['*'],
+        filter,
+        sort: ['event_date']
+      })
+    );
+    return result as EventItem[];
   }
 
   async getEventItem(id: number): Promise<EventItem | null> {
-    try {
-      const result = await directusClient.request(readItem('events', id));
-      return result as EventItem;
-    } catch (error) {
-      console.error('Error fetching event item:', error);
-      return null;
-    }
+    const result = await directusClient.request(readItem('events', id));
+    return result as EventItem;
   }
 
   async createEvent(data: Omit<EventItem, 'id'>): Promise<EventItem | null> {
-    try {
-      const result = await directusClient.request(createItem('events', data));
-      return result as EventItem;
-    } catch (error) {
-      console.error('Error creating event item:', error);
-      return null;
-    }
+    const result = await directusClient.request(createItem('events', data));
+    return result as EventItem;
   }
 
   // Publications methods
