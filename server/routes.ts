@@ -86,7 +86,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Simple API key authentication middleware for write operations
   const authenticateWrite = (req: any, res: any, next: any) => {
     const apiKey = req.headers['x-api-key'];
-    const validApiKey = process.env.CMS_API_KEY || 'dev-api-key-change-in-production';
+    const validApiKey = process.env.CMS_API_KEY;
+    
+    if (!validApiKey) {
+      res.status(500).json({ error: 'Server configuration error - CMS API key not configured' });
+      return;
+    }
     
     if (apiKey === validApiKey) {
       next();
