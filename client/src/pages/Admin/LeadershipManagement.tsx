@@ -92,10 +92,12 @@ export default function LeadershipManagement() {
             <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
             Refresh
           </Button>
-          <Button disabled data-testid="button-add-leadership">
-            <Plus className="h-4 w-4 mr-2" />
-            Add Leader (Coming Soon)
-          </Button>
+          <Link href="/admin/leadership/new">
+            <Button data-testid="button-add-leadership">
+              <Plus className="h-4 w-4 mr-2" />
+              Add Leader
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -162,10 +164,12 @@ export default function LeadershipManagement() {
                 {searchQuery ? 'No leadership members match your search' : 'No leadership members found'}
               </div>
               {!searchQuery && (
-                <Button disabled data-testid="button-create-first-leader">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Leader (Coming Soon)
-                </Button>
+                <Link href="/admin/leadership/new">
+                  <Button data-testid="button-create-first-leader">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add your first leader
+                  </Button>
+                </Link>
               )}
             </div>
           ) : (
@@ -235,9 +239,11 @@ export default function LeadershipManagement() {
                         >
                           {member.active ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </Button>
-                        <Button variant="outline" size="sm" disabled data-testid={`button-edit-${member.id}`}>
-                          <Edit className="h-4 w-4" />
-                        </Button>
+                        <Link href={`/admin/leadership/edit/${member.id}`}>
+                          <Button variant="outline" size="sm" data-testid={`button-edit-${member.id}`}>
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                        </Link>
                         <Button
                           variant="outline"
                           size="sm"

@@ -15,6 +15,9 @@ import EventsManagement from "@/pages/Admin/EventsManagement";
 import PublicationsManagement from "@/pages/Admin/PublicationsManagement";
 import LeadershipManagement from "@/pages/Admin/LeadershipManagement";
 import NewsForm from "@/pages/Admin/NewsForm";
+import EventsForm from "@/pages/Admin/EventsForm";
+import PublicationsForm from "@/pages/Admin/PublicationsForm";
+import LeadershipForm from "@/pages/Admin/LeadershipForm";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -35,9 +38,14 @@ function Router() {
             <Route path="/news/new" component={NewsForm} />
             <Route path="/news/edit/:id" component={NewsForm} />
             <Route path="/events" component={EventsManagement} />
+            <Route path="/events/new" component={EventsForm} />
+            <Route path="/events/edit/:id" component={EventsForm} />
             <Route path="/publications" component={PublicationsManagement} />
+            <Route path="/publications/new" component={PublicationsForm} />
+            <Route path="/publications/edit/:id" component={PublicationsForm} />
             <Route path="/leadership" component={LeadershipManagement} />
-            {/* Other form routes will be added here */}
+            <Route path="/leadership/new" component={LeadershipForm} />
+            <Route path="/leadership/edit/:id" component={LeadershipForm} />
             <Route component={() => <div className="p-6">
               <div className="text-center">
                 <h2 className="text-xl font-semibold mb-2">Page Not Found</h2>

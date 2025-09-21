@@ -92,10 +92,12 @@ export default function EventsManagement() {
             <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
             Refresh
           </Button>
-          <Button disabled data-testid="button-add-event">
-            <Plus className="h-4 w-4 mr-2" />
-            Add Event (Coming Soon)
-          </Button>
+          <Link href="/admin/events/new">
+            <Button data-testid="button-add-event">
+              <Plus className="h-4 w-4 mr-2" />
+              Add Event
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -162,10 +164,12 @@ export default function EventsManagement() {
                 {searchQuery ? 'No events match your search' : 'No events found'}
               </div>
               {!searchQuery && (
-                <Button disabled data-testid="button-create-first-event">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Create Event (Coming Soon)
-                </Button>
+                <Link href="/admin/events/new">
+                  <Button data-testid="button-create-first-event">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Create your first event
+                  </Button>
+                </Link>
               )}
             </div>
           ) : (
@@ -219,9 +223,11 @@ export default function EventsManagement() {
                         >
                           {event.published ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </Button>
-                        <Button variant="outline" size="sm" disabled data-testid={`button-edit-${event.id}`}>
-                          <Edit className="h-4 w-4" />
-                        </Button>
+                        <Link href={`/admin/events/edit/${event.id}`}>
+                          <Button variant="outline" size="sm" data-testid={`button-edit-${event.id}`}>
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                        </Link>
                         <Button
                           variant="outline"
                           size="sm"

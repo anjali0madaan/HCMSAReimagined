@@ -98,10 +98,12 @@ export default function PublicationsManagement() {
             <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
             Refresh
           </Button>
-          <Button disabled data-testid="button-add-publication">
-            <Plus className="h-4 w-4 mr-2" />
-            Add Publication (Coming Soon)
-          </Button>
+          <Link href="/admin/publications/new">
+            <Button data-testid="button-add-publication">
+              <Plus className="h-4 w-4 mr-2" />
+              Add Publication
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -174,10 +176,12 @@ export default function PublicationsManagement() {
                 {searchQuery ? 'No publications match your search' : 'No publications found'}
               </div>
               {!searchQuery && (
-                <Button disabled data-testid="button-create-first-publication">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Create Publication (Coming Soon)
-                </Button>
+                <Link href="/admin/publications/new">
+                  <Button data-testid="button-create-first-publication">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Create your first publication
+                  </Button>
+                </Link>
               )}
             </div>
           ) : (
@@ -245,9 +249,11 @@ export default function PublicationsManagement() {
                         >
                           {publication.published ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </Button>
-                        <Button variant="outline" size="sm" disabled data-testid={`button-edit-${publication.id}`}>
-                          <Edit className="h-4 w-4" />
-                        </Button>
+                        <Link href={`/admin/publications/edit/${publication.id}`}>
+                          <Button variant="outline" size="sm" data-testid={`button-edit-${publication.id}`}>
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                        </Link>
                         <Button
                           variant="outline"
                           size="sm"
