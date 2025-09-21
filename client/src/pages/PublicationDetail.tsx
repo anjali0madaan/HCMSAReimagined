@@ -68,7 +68,7 @@ export default function PublicationDetail() {
 
   // Get category display info
   const getCategoryInfo = (category: string) => {
-    const categoryMap = {
+    const categoryMap: Record<string, { label: string; color: string }> = {
       guidelines: { label: "Guidelines", color: "bg-blue-100 text-blue-800" },
       reports: { label: "Reports", color: "bg-green-100 text-green-800" },
       newsletters: { label: "Newsletters", color: "bg-purple-100 text-purple-800" },
