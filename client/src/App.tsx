@@ -9,7 +9,6 @@ import Events from "@/pages/Events";
 import EventDetail from "@/pages/EventDetail";
 import PublicationDetail from "@/pages/PublicationDetail";
 import AdminDashboard from "@/pages/Admin/Dashboard";
-import TestDashboard from "@/pages/Admin/TestDashboard";
 import AdminLayout from "@/pages/Admin/Layout";
 import NewsManagement from "@/pages/Admin/NewsManagement";
 import EventsManagement from "@/pages/Admin/EventsManagement";
@@ -32,6 +31,11 @@ function Router() {
       
       {/* Admin routes - explicit exact route + catch-all for subpaths */}
       <Route path="/admin">
+        <AdminLayout>
+          <AdminDashboard />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/">
         <AdminLayout>
           <AdminDashboard />
         </AdminLayout>
