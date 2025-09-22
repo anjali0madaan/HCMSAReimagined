@@ -226,38 +226,52 @@ function ContentManagement() {
 }
 
 export default function AdminDashboard() {
-  return (
-    <div className="container mx-auto p-6 space-y-8">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">HCMSA Admin Dashboard</h1>
+  try {
+    return (
+      <div className="container mx-auto p-6 space-y-8">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">HCMSA Admin Dashboard</h1>
+            <p className="text-muted-foreground">
+              Manage your content and monitor system status
+            </p>
+          </div>
+          <Link href="/">
+            <Button variant="outline" data-testid="button-view-website">
+              View Website
+            </Button>
+          </Link>
+        </div>
+
+        {/* Quick Stats */}
+        <QuickStats />
+
+        <div className="grid gap-6 lg:grid-cols-3">
+          {/* Main content area */}
+          <div className="lg:col-span-2 space-y-6">
+            <ContentManagement />
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            <SystemStatus />
+            <QuickActions />
+          </div>
+        </div>
+      </div>
+    );
+  } catch (error) {
+    console.error('AdminDashboard Error:', error);
+    return (
+      <div className="container mx-auto p-6">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Admin Dashboard Error</h1>
           <p className="text-muted-foreground">
-            Manage your content and monitor system status
+            Error loading dashboard: {error instanceof Error ? error.message : 'Unknown error'}
           </p>
         </div>
-        <Link href="/">
-          <Button variant="outline" data-testid="button-view-website">
-            View Website
-          </Button>
-        </Link>
       </div>
-
-      {/* Quick Stats */}
-      <QuickStats />
-
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Main content area */}
-        <div className="lg:col-span-2 space-y-6">
-          <ContentManagement />
-        </div>
-
-        {/* Sidebar */}
-        <div className="space-y-6">
-          <SystemStatus />
-          <QuickActions />
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
 }

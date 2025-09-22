@@ -9,6 +9,7 @@ import Events from "@/pages/Events";
 import EventDetail from "@/pages/EventDetail";
 import PublicationDetail from "@/pages/PublicationDetail";
 import AdminDashboard from "@/pages/Admin/Dashboard";
+import TestDashboard from "@/pages/Admin/TestDashboard";
 import AdminLayout from "@/pages/Admin/Layout";
 import NewsManagement from "@/pages/Admin/NewsManagement";
 import EventsManagement from "@/pages/Admin/EventsManagement";
@@ -29,23 +30,27 @@ function Router() {
       <Route path="/events/:id" component={EventDetail} />
       <Route path="/publications/:id" component={PublicationDetail} />
       
-      {/* Admin routes */}
-      <Route path="/admin" nest>
+      {/* Admin routes - explicit exact route + catch-all for subpaths */}
+      <Route path="/admin">
+        <AdminLayout>
+          <AdminDashboard />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/:rest*">
         <AdminLayout>
           <Switch>
-            <Route path="/" component={AdminDashboard} />
-            <Route path="/news" component={NewsManagement} />
-            <Route path="/news/new" component={NewsForm} />
-            <Route path="/news/edit/:id" component={NewsForm} />
-            <Route path="/events" component={EventsManagement} />
-            <Route path="/events/new" component={EventsForm} />
-            <Route path="/events/edit/:id" component={EventsForm} />
-            <Route path="/publications" component={PublicationsManagement} />
-            <Route path="/publications/new" component={PublicationsForm} />
-            <Route path="/publications/edit/:id" component={PublicationsForm} />
-            <Route path="/leadership" component={LeadershipManagement} />
-            <Route path="/leadership/new" component={LeadershipForm} />
-            <Route path="/leadership/edit/:id" component={LeadershipForm} />
+            <Route path="/admin/news" component={NewsManagement} />
+            <Route path="/admin/news/new" component={NewsForm} />
+            <Route path="/admin/news/edit/:id" component={NewsForm} />
+            <Route path="/admin/events" component={EventsManagement} />
+            <Route path="/admin/events/new" component={EventsForm} />
+            <Route path="/admin/events/edit/:id" component={EventsForm} />
+            <Route path="/admin/publications" component={PublicationsManagement} />
+            <Route path="/admin/publications/new" component={PublicationsForm} />
+            <Route path="/admin/publications/edit/:id" component={PublicationsForm} />
+            <Route path="/admin/leadership" component={LeadershipManagement} />
+            <Route path="/admin/leadership/new" component={LeadershipForm} />
+            <Route path="/admin/leadership/edit/:id" component={LeadershipForm} />
             <Route component={() => <div className="p-6">
               <div className="text-center">
                 <h2 className="text-xl font-semibold mb-2">Page Not Found</h2>
