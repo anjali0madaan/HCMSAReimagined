@@ -87,6 +87,9 @@ export const insertEventSchema = createInsertSchema(events).omit({
   id: true,
   date_created: true,
   date_updated: true
+}).extend({
+  event_date: z.coerce.date(),
+  end_date: z.coerce.date().optional()
 });
 
 export const insertPublicationSchema = createInsertSchema(publications).omit({
