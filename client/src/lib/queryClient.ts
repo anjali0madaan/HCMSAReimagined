@@ -12,9 +12,22 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
+  const headers: Record<string, string> = {};
+  
+  if (data) {
+    headers["Content-Type"] = "application/json";
+  }
+  
+  // Add API key for CMS write operations (POST, PUT, DELETE)
+  if (method !== 'GET' && url.includes('/api/cms/')) {
+    // For admin operations, we'll use a fixed API key
+    // In a production app, this would be handled more securely
+    headers["x-api-key"] = "hcmsa-cms-admin-key-2024";
+  }
+
   const res = await fetch(url, {
     method,
-    headers: data ? { "Content-Type": "application/json" } : {},
+    headers,
     body: data ? JSON.stringify(data) : undefined,
     credentials: "include",
   });
