@@ -169,9 +169,25 @@ export default function Homepage() {
 
       {!isLoading && (
         <>
-          {/* Quick Stats Section */}
-          <section className="py-12 bg-muted/30">
+
+          {/* About Section */}
+          <section id="about" className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold mb-4">About HCMSA</h2>
+                <div className="max-w-4xl mx-auto text-lg text-muted-foreground space-y-6">
+                  <p>
+                    The Haryana Civil Medical Services Association (HCMSA) is a professional organization dedicated to serving 
+                    civil medical officers and healthcare professionals across Haryana state. Founded with the mission to advance 
+                    healthcare excellence and professional development.
+                  </p>
+                  <p>
+                    Our association represents the interests of civil medical officers, promotes continuing medical education, 
+                    and works towards improving healthcare delivery systems throughout Haryana.
+                  </p>
+                </div>
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {quickStats.map((stat, index) => (
                   <div key={index} className="text-center p-6 bg-card rounded-lg shadow-sm">
@@ -187,7 +203,7 @@ export default function Homepage() {
           </section>
 
           {/* Latest News Section */}
-          <section className="py-16">
+          <section id="news" className="py-16">
             <div className="container mx-auto px-4">
               <div className="flex justify-between items-center mb-8">
                 <div>
@@ -239,7 +255,7 @@ export default function Homepage() {
           </section>
 
           {/* Upcoming Events Section */}
-          <section className="py-16">
+          <section id="events" className="py-16">
             <div className="container mx-auto px-4">
               <div className="flex justify-between items-center mb-8">
                 <div>
@@ -267,7 +283,7 @@ export default function Homepage() {
           </section>
 
           {/* Featured Publications Section */}
-          <section className="py-16 bg-muted/30">
+          <section id="publications" className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
               <div className="flex justify-between items-center mb-8">
                 <div>
@@ -291,6 +307,100 @@ export default function Homepage() {
                   <p className="text-muted-foreground">No featured publications available.</p>
                 </div>
               )}
+            </div>
+          </section>
+
+          {/* Gallery Section */}
+          <section id="gallery" className="py-16">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold mb-4">Gallery</h2>
+                <p className="text-lg text-muted-foreground">
+                  Moments from our events, conferences, and association activities
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-card rounded-lg overflow-hidden shadow-sm">
+                  <div className="aspect-video bg-muted/50 flex items-center justify-center">
+                    <p className="text-muted-foreground">Conference 2024</p>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold">Annual Medical Conference</h3>
+                    <p className="text-sm text-muted-foreground">Healthcare professionals gathering</p>
+                  </div>
+                </div>
+                
+                <div className="bg-card rounded-lg overflow-hidden shadow-sm">
+                  <div className="aspect-video bg-muted/50 flex items-center justify-center">
+                    <p className="text-muted-foreground">Workshop 2024</p>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold">Professional Development Workshop</h3>
+                    <p className="text-sm text-muted-foreground">Skill enhancement sessions</p>
+                  </div>
+                </div>
+                
+                <div className="bg-card rounded-lg overflow-hidden shadow-sm">
+                  <div className="aspect-video bg-muted/50 flex items-center justify-center">
+                    <p className="text-muted-foreground">Awards 2024</p>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold">Excellence Awards Ceremony</h3>
+                    <p className="text-sm text-muted-foreground">Recognizing outstanding service</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Contact Section */}
+          <section id="contact" className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold mb-4">Contact Us</h2>
+                <p className="text-lg text-muted-foreground">
+                  Get in touch with us for any queries or assistance
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Users className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Main Office</h3>
+                  <p className="text-muted-foreground">
+                    Civil Medical Services<br />
+                    Haryana Government<br />
+                    Chandigarh
+                  </p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Calendar className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Contact Info</h3>
+                  <p className="text-muted-foreground">
+                    Phone: +91-172-2864241<br />
+                    Email: info@hcmsa.gov.in<br />
+                    Website: hcmsassociation.co.in
+                  </p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <FileText className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Office Hours</h3>
+                  <p className="text-muted-foreground">
+                    Monday - Friday<br />
+                    9:00 AM - 5:00 PM<br />
+                    Saturday: 9:00 AM - 1:00 PM
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 
