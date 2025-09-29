@@ -29,7 +29,7 @@ function Router() {
       <Route path="/events/:id" component={EventDetail} />
       <Route path="/publications/:id" component={PublicationDetail} />
       
-      {/* Admin routes - explicit exact route + catch-all for subpaths */}
+      {/* Admin routes - explicit routes for better routing reliability */}
       <Route path="/admin">
         <AdminLayout>
           <AdminDashboard />
@@ -40,28 +40,72 @@ function Router() {
           <AdminDashboard />
         </AdminLayout>
       </Route>
-      <Route path="/admin/:rest*">
+      
+      {/* News Management */}
+      <Route path="/admin/news">
         <AdminLayout>
-          <Switch>
-            <Route path="/admin/news" component={NewsManagement} />
-            <Route path="/admin/news/new" component={NewsForm} />
-            <Route path="/admin/news/edit/:id" component={NewsForm} />
-            <Route path="/admin/events" component={EventsManagement} />
-            <Route path="/admin/events/new" component={EventsForm} />
-            <Route path="/admin/events/edit/:id" component={EventsForm} />
-            <Route path="/admin/publications" component={PublicationsManagement} />
-            <Route path="/admin/publications/new" component={PublicationsForm} />
-            <Route path="/admin/publications/edit/:id" component={PublicationsForm} />
-            <Route path="/admin/leadership" component={LeadershipManagement} />
-            <Route path="/admin/leadership/new" component={LeadershipForm} />
-            <Route path="/admin/leadership/edit/:id" component={LeadershipForm} />
-            <Route component={() => <div className="p-6">
-              <div className="text-center">
-                <h2 className="text-xl font-semibold mb-2">Page Not Found</h2>
-                <p className="text-muted-foreground">The requested admin page could not be found.</p>
-              </div>
-            </div>} />
-          </Switch>
+          <NewsManagement />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/news/new">
+        <AdminLayout>
+          <NewsForm />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/news/edit/:id">
+        <AdminLayout>
+          <NewsForm />
+        </AdminLayout>
+      </Route>
+      
+      {/* Events Management */}
+      <Route path="/admin/events">
+        <AdminLayout>
+          <EventsManagement />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/events/new">
+        <AdminLayout>
+          <EventsForm />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/events/edit/:id">
+        <AdminLayout>
+          <EventsForm />
+        </AdminLayout>
+      </Route>
+      
+      {/* Publications Management */}
+      <Route path="/admin/publications">
+        <AdminLayout>
+          <PublicationsManagement />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/publications/new">
+        <AdminLayout>
+          <PublicationsForm />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/publications/edit/:id">
+        <AdminLayout>
+          <PublicationsForm />
+        </AdminLayout>
+      </Route>
+      
+      {/* Leadership Management */}
+      <Route path="/admin/leadership">
+        <AdminLayout>
+          <LeadershipManagement />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/leadership/new">
+        <AdminLayout>
+          <LeadershipForm />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/leadership/edit/:id">
+        <AdminLayout>
+          <LeadershipForm />
         </AdminLayout>
       </Route>
       
