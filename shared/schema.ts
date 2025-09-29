@@ -1,10 +1,7 @@
 import { sql } from "drizzle-orm";
-import { pgTable, pgSchema, text, varchar, boolean, timestamp, integer } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, boolean, timestamp, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
-
-// Create dedicated CMS schema to avoid conflicts with Directus
-const cms = pgSchema('cms');
 
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -20,8 +17,8 @@ export const insertUserSchema = createInsertSchema(users).pick({
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
-// CMS Tables in dedicated schema
-export const news = cms.table("news", {
+// CMS Tables in public schema
+export const news = pgTable("news", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   slug: text("slug").unique(),
@@ -34,7 +31,7 @@ export const news = cms.table("news", {
   date_updated: timestamp("date_updated", { withTimezone: true }).default(sql`CURRENT_TIMESTAMP`).notNull()
 });
 
-export const events = cms.table("events", {
+export const events = pgTable("events", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   description: text("description").notNull(),
@@ -49,7 +46,7 @@ export const events = cms.table("events", {
   date_updated: timestamp("date_updated", { withTimezone: true }).default(sql`CURRENT_TIMESTAMP`).notNull()
 });
 
-export const publications = cms.table("publications", {
+export const publications = pgTable("publications", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   description: text("description"),
@@ -62,7 +59,7 @@ export const publications = cms.table("publications", {
   date_updated: timestamp("date_updated", { withTimezone: true }).default(sql`CURRENT_TIMESTAMP`).notNull()
 });
 
-export const leadership = cms.table("leadership", {
+export const leadership = pgTable("leadership", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
   position: text("position").notNull(),
@@ -70,7 +67,7 @@ export const leadership = cms.table("leadership", {
   photo: text("photo"),
   email: text("email"),
   phone: text("phone"),
-  order: integer("order").default(0).notNull(),
+  "order": integer("order").default(0).notNull(),
   active: boolean("active").default(true).notNull(),
   date_created: timestamp("date_created", { withTimezone: true }).default(sql`CURRENT_TIMESTAMP`).notNull(),
   date_updated: timestamp("date_updated", { withTimezone: true }).default(sql`CURRENT_TIMESTAMP`).notNull()
