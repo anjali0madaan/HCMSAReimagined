@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, useLocation } from "wouter";
 import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,11 @@ export default function NewsDetail() {
   const params = useParams();
   const [, setLocation] = useLocation();
   const newsId = params.id;
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   // Fetch single news article from database
   const { data: article, isLoading, error } = useQuery<News>({

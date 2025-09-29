@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, useLocation } from "wouter";
 import { ArrowLeft, Calendar, Clock, MapPin, User, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,11 @@ export default function EventDetail() {
   const [, setLocation] = useLocation();
   const eventId = parseInt(params.id || "1", 10);
   const event = getEventById(eventId);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   if (!event) {
     return (

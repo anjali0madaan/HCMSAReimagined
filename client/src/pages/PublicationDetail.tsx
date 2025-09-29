@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, useLocation } from "wouter";
 import { ArrowLeft, Calendar, FileText, Download, Building, AlertCircle, Hash } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,11 @@ export default function PublicationDetail() {
   const params = useParams();
   const [, setLocation] = useLocation();
   const publicationId = params.id;
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   // Fetch single publication from database
   const { data: publication, isLoading, error } = useQuery<Publication>({
