@@ -5,7 +5,7 @@ import { Calendar, FileText, Download, Building, AlertCircle } from "lucide-reac
 import { useLocation } from "wouter";
 
 interface PublicationCardProps {
-  id: number;
+  id: string;
   title: string;
   description: string;
   category: string;

@@ -115,8 +115,8 @@ export default function Homepage() {
   ];
 
   // Get featured publications (already sliced in query)
-  const featuredPublications = publicationsData?.map((pub, index) => ({
-    id: index + 1, // Use numeric ID for component
+  const featuredPublications = publicationsData?.map((pub) => ({
+    id: pub.id, // Use real UUID from database
     title: pub.title,
     description: pub.description || "",
     category: pub.category,
@@ -134,7 +134,7 @@ export default function Homepage() {
   })) || [];
   
   const handleViewAllNews = () => {
-    console.log("View all news clicked");
+    setLocation("/news");
   };
 
   const handleViewAllEvents = () => {
@@ -142,7 +142,7 @@ export default function Homepage() {
   };
   
   const handleViewAllPublications = () => {
-    console.log("View all publications clicked");
+    setLocation("/publications");
   };
 
   const handleQuickAction = (action: string) => {

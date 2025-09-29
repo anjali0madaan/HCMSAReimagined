@@ -4,9 +4,11 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Homepage from "@/pages/Homepage";
+import News from "@/pages/News";
 import NewsDetail from "@/pages/NewsDetail";
 import Events from "@/pages/Events";
 import EventDetail from "@/pages/EventDetail";
+import Publications from "@/pages/Publications";
 import PublicationDetail from "@/pages/PublicationDetail";
 import AdminDashboard from "@/pages/Admin/Dashboard";
 import AdminLayout from "@/pages/Admin/Layout";
@@ -24,9 +26,11 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Homepage} />
+      <Route path="/news" component={News} />
       <Route path="/news/:id" component={NewsDetail} />
       <Route path="/events" component={Events} />
       <Route path="/events/:id" component={EventDetail} />
+      <Route path="/publications" component={Publications} />
       <Route path="/publications/:id" component={PublicationDetail} />
       
       {/* Admin routes - explicit routes for better routing reliability */}
