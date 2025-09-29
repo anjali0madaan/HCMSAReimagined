@@ -5,7 +5,7 @@ import { Calendar, MapPin, Clock, Users } from "lucide-react";
 import { useLocation } from "wouter";
 
 interface EventCardProps {
-  id: number;
+  id: string;
   title: string;
   description: string;
   date: string;

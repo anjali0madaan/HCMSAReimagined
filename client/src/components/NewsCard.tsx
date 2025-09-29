@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
 
 interface NewsCardProps {
-  id: number;
+  id: string;
   title: string;
   excerpt: string;
   date: string;

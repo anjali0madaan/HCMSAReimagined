@@ -42,8 +42,8 @@ export default function Homepage() {
   });
 
   // Transform news data for display
-  const latestNews = newsData?.map((article, index) => ({
-    id: index + 1, // Use numeric ID for component
+  const latestNews = newsData?.map((article) => ({
+    id: article.id, // Use real database UUID
     title: article.title,
     excerpt: article.excerpt || "",
     date: new Date(article.date_created).toLocaleDateString('en-US', {
@@ -56,8 +56,8 @@ export default function Homepage() {
   })) || [];
 
   // Transform events data for display
-  const upcomingEvents = eventsData?.map((event, index) => ({
-    id: index + 1, // Use numeric ID for component
+  const upcomingEvents = eventsData?.map((event) => ({
+    id: event.id, // Use real database UUID
     title: event.title,
     description: event.description,
     date: event.event_date ? new Date(event.event_date).toLocaleDateString('en-US', {
