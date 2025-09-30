@@ -1,0 +1,110 @@
+15:29:10.901 Running build in Washington, D.C., USA (East) – iad1
+15:29:10.908 Build machine configuration: 2 cores, 8 GB
+15:29:10.968 Cloning github.com/anjali0madaan/HCMSAReimagined (Branch: main, Commit: 8e04caf)
+15:29:11.508 Previous build caches not available
+15:29:12.197 Cloning completed: 1.228s
+15:29:12.853 Running "vercel build"
+15:29:13.260 Vercel CLI 48.1.6
+15:29:13.918 Installing dependencies...
+15:29:16.277 npm warn ERESOLVE overriding peer dependency
+15:29:16.279 npm warn While resolving: rollup-plugin-styles@4.0.0
+15:29:16.279 npm warn Found: rollup@3.29.4
+15:29:16.279 npm warn node_modules/@directus/extensions-sdk/node_modules/rollup
+15:29:16.279 npm warn   rollup@"3.29.4" from @directus/extensions-sdk@12.1.4
+15:29:16.280 npm warn   node_modules/@directus/extensions-sdk
+15:29:16.280 npm warn     @directus/extensions-sdk@"12.1.4" from @directus/api@23.3.2
+15:29:16.280 npm warn     node_modules/@directus/api
+15:29:16.280 npm warn   2 more (rollup-plugin-esbuild, vite)
+15:29:16.281 npm warn
+15:29:16.281 npm warn Could not resolve dependency:
+15:29:16.281 npm warn peer rollup@"^2.63.0" from rollup-plugin-styles@4.0.0
+15:29:16.281 npm warn node_modules/@directus/extensions-sdk/node_modules/rollup-plugin-styles
+15:29:16.282 npm warn   rollup-plugin-styles@"4.0.0" from @directus/extensions-sdk@12.1.4
+15:29:16.282 npm warn   node_modules/@directus/extensions-sdk
+15:29:16.282 npm warn
+15:29:16.282 npm warn Conflicting peer dependency: rollup@2.79.2
+15:29:16.282 npm warn node_modules/rollup
+15:29:16.283 npm warn   peer rollup@"^2.63.0" from rollup-plugin-styles@4.0.0
+15:29:16.283 npm warn   node_modules/@directus/extensions-sdk/node_modules/rollup-plugin-styles
+15:29:16.283 npm warn     rollup-plugin-styles@"4.0.0" from @directus/extensions-sdk@12.1.4
+15:29:16.283 npm warn     node_modules/@directus/extensions-sdk
+15:29:18.812 npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+15:29:19.006 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+15:29:20.019 npm warn deprecated npmlog@6.0.2: This package is no longer supported.
+15:29:20.519 npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+15:29:20.807 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+15:29:21.670 npm warn deprecated gauge@4.0.4: This package is no longer supported.
+15:29:21.954 npm warn deprecated consolidate@0.15.1: Please upgrade to consolidate v1.0.0+ as it has been modernized with several long-awaited fixes implemented. Maintenance is supported by Forward Email at https://forwardemail.net ; follow/watch https://github.com/ladjs/consolidate for updates and release changelog
+15:29:22.235 npm warn deprecated are-we-there-yet@3.0.1: This package is no longer supported.
+15:29:22.281 npm warn deprecated json2csv@5.0.7: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+15:29:23.621 npm warn deprecated @npmcli/move-file@1.1.2: This functionality has been moved to @npmcli/fs
+15:29:23.701 npm warn deprecated @shopify/semaphore@3.1.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+15:29:23.839 npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+15:29:23.863 npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+15:29:25.299 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+15:29:25.584 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+15:29:25.972 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+15:29:26.108 npm warn deprecated glob@8.1.0: Glob versions prior to v9 are no longer supported
+15:29:27.799 npm warn deprecated ldapjs@2.3.3: This package has been decomissioned. See https://github.com/ldapjs/node-ldapjs/blob/8ffd0bc9c149088a10ec4c1ec6a18450f76ad05d/README.md
+15:29:46.174 npm error code 1
+15:29:46.174 npm error path /vercel/path0/node_modules/isolated-vm
+15:29:46.174 npm error command failed
+15:29:46.174 npm error command sh -c prebuild-install || (node-gyp rebuild --release -j max && node-gyp clean)
+15:29:46.174 npm error prebuild-install warn install /lib64/libstdc++.so.6: version `GLIBCXX_3.4.30' not found (required by /vercel/path0/node_modules/isolated-vm/out/isolated_vm.node)
+15:29:46.175 npm error gyp info it worked if it ends with ok
+15:29:46.175 npm error gyp info using node-gyp@8.4.1
+15:29:46.175 npm error gyp info using node@22.20.0 | linux | x64
+15:29:46.175 npm error (node:202) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+15:29:46.175 npm error (Use `node --trace-deprecation ...` to show where the warning was created)
+15:29:46.175 npm error gyp info find Python using Python version 3.12.2 found at "/usr/local/bin/python3"
+15:29:46.175 npm error gyp http GET https://nodejs.org/download/release/v22.20.0/node-v22.20.0-headers.tar.gz
+15:29:46.175 npm error gyp http 200 https://nodejs.org/download/release/v22.20.0/node-v22.20.0-headers.tar.gz
+15:29:46.175 npm error gyp http GET https://nodejs.org/download/release/v22.20.0/SHASUMS256.txt
+15:29:46.175 npm error gyp http 200 https://nodejs.org/download/release/v22.20.0/SHASUMS256.txt
+15:29:46.176 npm error gyp info spawn /usr/local/bin/python3
+15:29:46.176 npm error gyp info spawn args [
+15:29:46.176 npm error gyp info spawn args   '/vercel/path0/node_modules/node-gyp/gyp/gyp_main.py',
+15:29:46.176 npm error gyp info spawn args   'binding.gyp',
+15:29:46.176 npm error gyp info spawn args   '-f',
+15:29:46.177 npm error gyp info spawn args   'make',
+15:29:46.177 npm error gyp info spawn args   '-I',
+15:29:46.177 npm error gyp info spawn args   '/vercel/path0/node_modules/isolated-vm/build/config.gypi',
+15:29:46.177 npm error gyp info spawn args   '-I',
+15:29:46.177 npm error gyp info spawn args   '/vercel/path0/node_modules/node-gyp/addon.gypi',
+15:29:46.177 npm error gyp info spawn args   '-I',
+15:29:46.177 npm error gyp info spawn args   '/vercel/.cache/node-gyp/22.20.0/include/node/common.gypi',
+15:29:46.177 npm error gyp info spawn args   '-Dlibrary=shared_library',
+15:29:46.177 npm error gyp info spawn args   '-Dvisibility=default',
+15:29:46.177 npm error gyp info spawn args   '-Dnode_root_dir=/vercel/.cache/node-gyp/22.20.0',
+15:29:46.177 npm error gyp info spawn args   '-Dnode_gyp_dir=/vercel/path0/node_modules/node-gyp',
+15:29:46.177 npm error gyp info spawn args   '-Dnode_lib_file=/vercel/.cache/node-gyp/22.20.0/<(target_arch)/node.lib',
+15:29:46.177 npm error gyp info spawn args   '-Dmodule_root_dir=/vercel/path0/node_modules/isolated-vm',
+15:29:46.177 npm error gyp info spawn args   '-Dnode_engine=v8',
+15:29:46.177 npm error gyp info spawn args   '--depth=.',
+15:29:46.177 npm error gyp info spawn args   '--no-parallel',
+15:29:46.177 npm error gyp info spawn args   '--generator-output',
+15:29:46.178 npm error gyp info spawn args   'build',
+15:29:46.178 npm error gyp info spawn args   '-Goutput_dir=.'
+15:29:46.178 npm error gyp info spawn args ]
+15:29:46.178 npm error Traceback (most recent call last):
+15:29:46.178 npm error   File "/vercel/path0/node_modules/node-gyp/gyp/gyp_main.py", line 42, in <module>
+15:29:46.178 npm error     import gyp  # noqa: E402
+15:29:46.178 npm error     ^^^^^^^^^^
+15:29:46.178 npm error   File "/vercel/path0/node_modules/node-gyp/gyp/pylib/gyp/__init__.py", line 9, in <module>
+15:29:46.190 npm error     import gyp.input
+15:29:46.190 npm error   File "/vercel/path0/node_modules/node-gyp/gyp/pylib/gyp/input.py", line 19, in <module>
+15:29:46.191 npm error     from distutils.version import StrictVersion
+15:29:46.192 npm error ModuleNotFoundError: No module named 'distutils'
+15:29:46.192 npm error gyp ERR! configure error 
+15:29:46.192 npm error gyp ERR! stack Error: `gyp` failed with exit code: 1
+15:29:46.192 npm error gyp ERR! stack     at ChildProcess.onCpExit (/vercel/path0/node_modules/node-gyp/lib/configure.js:259:16)
+15:29:46.193 npm error gyp ERR! stack     at ChildProcess.emit (node:events:519:28)
+15:29:46.193 npm error gyp ERR! stack     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+15:29:46.193 npm error gyp ERR! System Linux 5.10.174
+15:29:46.193 npm error gyp ERR! command "/node22/bin/node" "/vercel/path0/node_modules/.bin/node-gyp" "rebuild" "--release" "-j" "max"
+15:29:46.193 npm error gyp ERR! cwd /vercel/path0/node_modules/isolated-vm
+15:29:46.193 npm error gyp ERR! node -v v22.20.0
+15:29:46.193 npm error gyp ERR! node-gyp -v v8.4.1
+15:29:46.193 npm error gyp ERR! not ok
+15:29:46.196 npm error A complete log of this run can be found in: /vercel/.npm/_logs/2025-09-30T09_59_14_752Z-debug-0.log
+15:29:46.264 Error: Command "npm install" exited with 1

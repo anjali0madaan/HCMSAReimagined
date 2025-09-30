@@ -1,9 +1,0 @@
-{
-  "name": "directus-cms",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "directus": "directus start --config-path ./directus.config.js",
-    "directus-init": "directus bootstrap --config-path ./directus.config.js"
-  }
-}
