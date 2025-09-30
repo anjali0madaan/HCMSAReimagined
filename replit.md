@@ -4,6 +4,9 @@
 Official website for Haryana Civil Medical Services Association (HCMSA) - a professional association serving civil medical officers and healthcare professionals in Haryana.
 
 ## Recent Changes
+- **Vercel Serverless Fix** (Sept 30, 2025): Fixed module resolution for Vercel deployment - replaced all `@shared/schema` TypeScript path aliases with relative imports (`../shared/schema.js`) in server files (routes.ts, storage.ts, db.ts) for proper Node.js ES module resolution in serverless environment
+- **Vercel API Handler Created**: Built `api/index.ts` as serverless function wrapper for Express app compatible with Vercel's serverless platform
+- **Vercel Configuration**: Added vercel.json with proper routing configuration for API endpoints and static files
 - **Vercel Deployment Ready** (Sept 30, 2025): All server imports updated with `.js` extensions for ES module compatibility on Vercel - all 6 server files now properly reference relative imports with file extensions as required by Node.js ES module spec
 - **Database Migration to Supabase**: Successfully migrated from Neon to Supabase PostgreSQL with comprehensive sample content (7 news, 7 events, 7 publications, 2 leadership profiles)
 - **Event Detail Pages Fixed**: Fixed EventDetail.tsx to fetch from database API instead of mock data, now consistent with NewsDetail pages using React Query pattern

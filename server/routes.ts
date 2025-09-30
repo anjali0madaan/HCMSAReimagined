@@ -7,7 +7,7 @@ import {
   insertEventSchema, 
   insertPublicationSchema, 
   insertLeadershipSchema 
-} from "@shared/schema";
+} from "../shared/schema.js";
 
 // Helper function to parse pagination parameters
 function getPaginationParams(query: any) {

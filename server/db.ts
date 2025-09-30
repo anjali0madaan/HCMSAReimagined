@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 import { drizzle } from 'drizzle-orm/node-postgres';
-import * as schema from "@shared/schema";
+import * as schema from "../shared/schema.js";
 
 // Use Supabase database connection exclusively
 const databaseUrl = process.env.SUPABASE_DATABASE_URL;

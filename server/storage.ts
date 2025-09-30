@@ -9,8 +9,8 @@ import {
   type InsertPublication,
   type Leadership,
   type InsertLeadership
-} from "@shared/schema";
-import { users, news, events, publications, leadership } from "@shared/schema";
+} from "../shared/schema.js";
+import { users, news, events, publications, leadership } from "../shared/schema.js";
 import { eq, desc, asc, sql } from "drizzle-orm";
 import { db } from "./db.js";
 import bcrypt from "bcrypt";
