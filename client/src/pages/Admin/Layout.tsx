@@ -64,10 +64,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               {navigation.map((item) => (
                 <Link key={item.name} href={item.href}>
                   <Button
-                    variant={isActive(item.href) ? "default" : "ghost"}
+                    variant="ghost"
                     className={cn(
                       "w-full justify-start",
-                      isActive(item.href) && "bg-gray-100 dark:bg-gray-700"
+                      isActive(item.href) && "bg-primary text-primary-foreground hover:bg-primary/90"
                     )}
                     data-testid={`nav-${item.name.toLowerCase()}`}
                   >
