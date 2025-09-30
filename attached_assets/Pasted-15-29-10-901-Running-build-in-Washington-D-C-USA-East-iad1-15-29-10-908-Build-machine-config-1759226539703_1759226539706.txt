@@ -2,7 +2,7 @@
 15:29:10.908 Build machine configuration: 2 cores, 8 GB
 15:29:10.968 Cloning github.com/anjali0madaan/HCMSAReimagined (Branch: main, Commit: 8e04caf)
 15:29:11.508 Previous build caches not available
-15:29:12.197 Cloning completed: 1.228s
+15:29:12.197 Cloning completed: 1.228sa
 15:29:12.853 Running "vercel build"
 15:29:13.260 Vercel CLI 48.1.6
 15:29:13.918 Installing dependencies...
