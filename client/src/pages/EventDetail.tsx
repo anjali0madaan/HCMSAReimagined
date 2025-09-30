@@ -1,23 +1,48 @@
 import { useEffect } from "react";
 import { useParams, useLocation } from "wouter";
-import { ArrowLeft, Calendar, Clock, MapPin, User, Users } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { getEventById } from "@shared/data";
+import { useQuery } from "@tanstack/react-query";
+import type { Event } from "@shared/schema";
 
 export default function EventDetail() {
   const params = useParams();
   const [, setLocation] = useLocation();
-  const eventId = parseInt(params.id || "1", 10);
-  const event = getEventById(eventId);
+  const eventId = params.id;
+
+  // Fetch event from database
+  const { data: event, isLoading, error } = useQuery<Event>({
+    queryKey: ['/api/cms/events', eventId],
+    enabled: !!eventId,
+  });
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  const handleBack = () => {
+    setLocation("/events");
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="container mx-auto px-4 py-8">
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading event...</p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!event) {
     return (
@@ -38,10 +63,8 @@ export default function EventDetail() {
     );
   }
 
-  const handleBack = () => {
-    setLocation("/events");
-  };
-
+  const eventDate = event.event_date ? new Date(event.event_date) : null;
+  const endDate = event.end_date ? new Date(event.end_date) : null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -64,9 +87,9 @@ export default function EventDetail() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Badge variant="outline" data-testid="event-category">
-                  {event.category}
+                  Event
                 </Badge>
-                {event.registrationOpen && (
+                {event.registration_required && (
                   <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                     Registration Open
                   </Badge>
@@ -94,11 +117,18 @@ export default function EventDetail() {
                     <div>
                       <p className="font-medium">Date</p>
                       <p className="text-muted-foreground" data-testid="event-date">
-                        {new Date(event.date).toLocaleDateString('en-US', {
+                        {eventDate ? eventDate.toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric'
-                        })}
+                        }) : 'TBD'}
+                        {endDate && endDate.getTime() !== eventDate?.getTime() && (
+                          <> - {endDate.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}</>
+                        )}
                       </p>
                     </div>
                   </div>
@@ -107,7 +137,12 @@ export default function EventDetail() {
                     <Clock className="h-5 w-5 mr-3 text-primary" />
                     <div>
                       <p className="font-medium">Time</p>
-                      <p className="text-muted-foreground" data-testid="event-time">{event.time}</p>
+                      <p className="text-muted-foreground" data-testid="event-time">
+                        {eventDate ? eventDate.toLocaleTimeString('en-US', {
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        }) : 'TBD'}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -117,37 +152,27 @@ export default function EventDetail() {
                     <MapPin className="h-5 w-5 mr-3 text-primary" />
                     <div>
                       <p className="font-medium">Venue</p>
-                      <p className="text-muted-foreground" data-testid="event-venue">{event.venue}</p>
+                      <p className="text-muted-foreground" data-testid="event-venue">
+                        {event.location || 'TBD'}
+                      </p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center">
-                    <User className="h-5 w-5 mr-3 text-primary" />
-                    <div>
-                      <p className="font-medium">Organizer</p>
-                      <p className="text-muted-foreground" data-testid="event-organizer">{event.organizer}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Additional Info */}
-              <div className="mt-6 pt-6 border-t">
-                <div className="flex flex-wrap items-center gap-6">
-                  {event.attendees && (
+                  {event.registration_required && event.external_registration_url && (
                     <div className="flex items-center">
-                      <Users className="h-4 w-4 mr-2 text-primary" />
-                      <span className="text-sm text-muted-foreground" data-testid="event-attendees">
-                        {event.attendees} registered
-                      </span>
-                    </div>
-                  )}
-                  {event.registrationDeadline && (
-                    <div className="flex items-center">
-                      <Calendar className="h-4 w-4 mr-2 text-primary" />
-                      <span className="text-sm text-muted-foreground" data-testid="event-deadline">
-                        Registration deadline: {new Date(event.registrationDeadline).toLocaleDateString()}
-                      </span>
+                      <Button 
+                        asChild
+                        className="w-full"
+                        data-testid="button-register"
+                      >
+                        <a 
+                          href={event.external_registration_url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                        >
+                          Register Now
+                        </a>
+                      </Button>
                     </div>
                   )}
                 </div>
@@ -156,16 +181,18 @@ export default function EventDetail() {
           </Card>
 
           {/* Event Content */}
-          <Card>
-            <CardContent className="p-8">
-              <div 
-                className="prose prose-lg max-w-none dark:prose-invert"
-                dangerouslySetInnerHTML={{ __html: event.content }}
-                data-testid="event-content"
-              />
-            </CardContent>
-          </Card>
-
+          {event.description && (
+            <Card>
+              <CardContent className="p-8">
+                <div 
+                  className="prose prose-lg max-w-none dark:prose-invert"
+                  data-testid="event-content"
+                >
+                  <p>{event.description}</p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Back Button at Bottom */}
           <div className="mt-8 text-center">
