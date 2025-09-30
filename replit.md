@@ -4,6 +4,9 @@
 Official website for Haryana Civil Medical Services Association (HCMSA) - a professional association serving civil medical officers and healthcare professionals in Haryana.
 
 ## Recent Changes
+- **Vercel Deployment Ready** (Sept 30, 2025): All server imports updated with `.js` extensions for ES module compatibility on Vercel - all 6 server files now properly reference relative imports with file extensions as required by Node.js ES module spec
+- **Database Migration to Supabase**: Successfully migrated from Neon to Supabase PostgreSQL with comprehensive sample content (7 news, 7 events, 7 publications, 2 leadership profiles)
+- **Event Detail Pages Fixed**: Fixed EventDetail.tsx to fetch from database API instead of mock data, now consistent with NewsDetail pages using React Query pattern
 - **Navigation Fixed**: Fixed menu navigation to properly scroll to corresponding sections on homepage - all menu items (About, News, Events, Publications, Gallery, Contact) now correctly navigate to their respective sections
 - **Complete Homepage Sections**: Added all missing homepage sections with proper IDs for navigation:
   - About section with HCMSA description and statistics
@@ -27,9 +30,12 @@ Official website for Haryana Civil Medical Services Association (HCMSA) - a prof
 
 ## Project Architecture
 - **Frontend**: React with TypeScript, Tailwind CSS, shadcn/ui components
+- **Backend**: Express.js with TypeScript, ES modules with `.js` extensions for Vercel compatibility
+- **Database**: Supabase PostgreSQL (migrated from Neon) with Drizzle ORM
+- **CMS**: Admin dashboard with API key authentication (CMS_API_KEY)
 - **Design**: Professional government-style design based on Haryana Health Department portal
 - **Integration**: Deep link integration with external membership portal
-- **Mock Data**: Contains sample news, events, and leadership data for demonstration
+- **Deployment**: Vercel-ready with ES module imports properly configured
 
 ## Features
 - Hero slider with HCMSA activities and achievements
