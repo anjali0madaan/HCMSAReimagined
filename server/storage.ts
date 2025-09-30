@@ -12,7 +12,7 @@ import {
 } from "@shared/schema";
 import { users, news, events, publications, leadership } from "@shared/schema";
 import { eq, desc, asc, sql } from "drizzle-orm";
-import { db } from "./db";
+import { db } from "./db.js";
 import bcrypt from "bcrypt";
 
 // Public user type without password

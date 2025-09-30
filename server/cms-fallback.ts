@@ -1,6 +1,6 @@
 // Fallback CMS service using static data when Directus is not available
 import { readFileSync } from 'fs';
-import { NewsItem, EventItem, PublicationItem, LeadershipItem } from './directus-client';
+import { NewsItem, EventItem, PublicationItem, LeadershipItem } from './directus-client.js';
 
 // Import existing static data as fallback
 const staticDataPath = '../shared/data.ts';

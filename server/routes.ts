@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { registerAdminRoutes } from "./admin-routes";
+import { storage } from "./storage.js";
+import { registerAdminRoutes } from "./admin-routes.js";
 import { 
   insertNewsSchema, 
   insertEventSchema, 
