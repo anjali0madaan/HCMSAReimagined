@@ -170,8 +170,32 @@ export default function Homepage() {
       {!isLoading && (
         <>
 
+          {/* Leadership Section */}
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold mb-4">Our Leadership</h2>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Meet the dedicated professionals leading the Haryana Civil Medical Services Association
+                </p>
+              </div>
+              
+              {leadership.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {leadership.map((leader) => (
+                    <LeadershipProfile key={leader.id} {...leader} />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <p className="text-muted-foreground">No active leadership profiles available.</p>
+                </div>
+              )}
+            </div>
+          </section>
+
           {/* About Section */}
-          <section id="about" className="py-16 bg-muted/30">
+          <section id="about" className="py-16">
             <div className="container mx-auto px-4">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold mb-4">About HCMSA</h2>
@@ -225,30 +249,6 @@ export default function Homepage() {
               ) : (
                 <div className="text-center py-12">
                   <p className="text-muted-foreground">No published news articles available.</p>
-                </div>
-              )}
-            </div>
-          </section>
-
-          {/* Leadership Section */}
-          <section className="py-16 bg-muted/30">
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold mb-4">Our Leadership</h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Meet the dedicated professionals leading the Haryana Civil Medical Services Association
-                </p>
-              </div>
-              
-              {leadership.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {leadership.map((leader) => (
-                    <LeadershipProfile key={leader.id} {...leader} />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <p className="text-muted-foreground">No active leadership profiles available.</p>
                 </div>
               )}
             </div>
