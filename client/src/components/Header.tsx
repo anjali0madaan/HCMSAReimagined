@@ -67,8 +67,12 @@ export default function Header() {
         {/* Top bar */}
         <div className="flex items-center justify-between py-2 text-sm text-muted-foreground border-b border-border/50">
           <div className="hidden md:flex items-center space-x-6">
-            <span>Email: info@hcmsa.gov.in</span>
-            <span>Phone: +91-172-2864241</span>
+            <a href="mailto:support@hcmsassociation.co.in" className="hover:text-primary transition-colors" data-testid="link-header-email">
+              Email: support@hcmsassociation.co.in
+            </a>
+            <a href="tel:9646033033" className="hover:text-primary transition-colors" data-testid="link-header-phone">
+              Phone: 9646033033
+            </a>
           </div>
           <div className="flex items-center space-x-4">
             <ThemeToggle />
