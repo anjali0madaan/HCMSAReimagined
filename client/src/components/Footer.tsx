@@ -64,11 +64,11 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center">
                   <Phone className="h-4 w-4 mr-2 text-primary" />
-                  <span data-testid="footer-phone">+91-172-2864241</span>
+                  <span data-testid="footer-phone">9646033033</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="h-4 w-4 mr-2 text-primary" />
-                  <span data-testid="footer-email">info@hcmsa.gov.in</span>
+                  <span data-testid="footer-email">support@hcmsassociation.co.in</span>
                 </div>
               </div>
             </div>
