@@ -140,7 +140,7 @@ export default function Homepage() {
     { 
       icon: Award, 
       label: "Years of Service", 
-      value: "58", 
+      value: "38", 
       testId: "stat-years" 
     }
   ];

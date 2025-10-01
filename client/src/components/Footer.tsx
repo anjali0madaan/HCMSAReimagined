@@ -53,7 +53,7 @@ export default function Footer() {
               </div>
               <h3 className="font-semibold mb-3">Haryana Civil Medical Services Association</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Dedicated to advancing healthcare services and supporting civil medical officers across Haryana since 1966.
+                Dedicated to advancing healthcare services and supporting civil medical officers across Haryana since 1987.
               </p>
               
               {/* Contact info */}
