@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import HeroSlider from "@/components/HeroSlider";
 import NewsCard from "@/components/NewsCard";
@@ -6,7 +7,8 @@ import EventCard from "@/components/EventCard";
 import PublicationCard from "@/components/PublicationCard";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Calendar, FileText, Award } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ArrowRight, Users, Calendar, FileText, Award, X } from "lucide-react";
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import maleDoctor from "@assets/generated_images/Male_doctor_portrait_7aebea1c.png";
@@ -16,6 +18,11 @@ import type { News, Event, Publication, Leadership } from "@shared/schema";
 
 export default function Homepage() {
   const [, setLocation] = useLocation();
+  const [selectedGalleryItem, setSelectedGalleryItem] = useState<{
+    title: string;
+    description: string;
+    image: string;
+  } | null>(null);
   
   // Fetch latest news from database
   const { data: newsData, isLoading: newsLoading } = useQuery<News[]>({
@@ -84,6 +91,31 @@ export default function Homepage() {
     email: leader.email || "",
     phone: leader.phone || ""
   })) || [];
+
+  // Gallery items data
+  const galleryItems = [
+    {
+      id: 1,
+      title: "Annual Medical Conference",
+      description: "Healthcare professionals gathering for knowledge sharing and networking",
+      image: seniorDoctor,
+      category: "Conference 2024"
+    },
+    {
+      id: 2,
+      title: "Professional Development Workshop",
+      description: "Skill enhancement sessions for medical professionals",
+      image: maleDoctor,
+      category: "Workshop 2024"
+    },
+    {
+      id: 3,
+      title: "Excellence Awards Ceremony",
+      description: "Recognizing outstanding service and dedication in healthcare",
+      image: femaleDoctor,
+      category: "Awards 2024"
+    }
+  ];
 
   // Calculate dynamic stats from database data
   const quickStats = [
@@ -320,38 +352,55 @@ export default function Homepage() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-card rounded-lg overflow-hidden shadow-sm">
-                  <div className="aspect-video bg-muted/50 flex items-center justify-center">
-                    <p className="text-muted-foreground">Conference 2024</p>
+                {galleryItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className="bg-card rounded-lg overflow-hidden shadow-sm cursor-pointer hover-elevate transition-all"
+                    onClick={() => setSelectedGalleryItem(item)}
+                    data-testid={`gallery-item-${item.id}`}
+                  >
+                    <div className="aspect-video bg-muted/50 flex items-center justify-center overflow-hidden relative group">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <p className="text-white font-semibold">Click to view</p>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-semibold" data-testid={`gallery-title-${item.id}`}>{item.title}</h3>
+                      <p className="text-sm text-muted-foreground">{item.category}</p>
+                    </div>
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold">Annual Medical Conference</h3>
-                    <p className="text-sm text-muted-foreground">Healthcare professionals gathering</p>
-                  </div>
-                </div>
-                
-                <div className="bg-card rounded-lg overflow-hidden shadow-sm">
-                  <div className="aspect-video bg-muted/50 flex items-center justify-center">
-                    <p className="text-muted-foreground">Workshop 2024</p>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold">Professional Development Workshop</h3>
-                    <p className="text-sm text-muted-foreground">Skill enhancement sessions</p>
-                  </div>
-                </div>
-                
-                <div className="bg-card rounded-lg overflow-hidden shadow-sm">
-                  <div className="aspect-video bg-muted/50 flex items-center justify-center">
-                    <p className="text-muted-foreground">Awards 2024</p>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold">Excellence Awards Ceremony</h3>
-                    <p className="text-sm text-muted-foreground">Recognizing outstanding service</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </section>
+
+          {/* Gallery Modal */}
+          <Dialog open={!!selectedGalleryItem} onOpenChange={(open) => !open && setSelectedGalleryItem(null)}>
+            <DialogContent className="max-w-4xl">
+              {selectedGalleryItem && (
+                <>
+                  <DialogHeader>
+                    <DialogTitle>{selectedGalleryItem.title}</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div className="aspect-video w-full overflow-hidden rounded-lg">
+                      <img
+                        src={selectedGalleryItem.image}
+                        alt={selectedGalleryItem.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <p className="text-muted-foreground">{selectedGalleryItem.description}</p>
+                  </div>
+                </>
+              )}
+            </DialogContent>
+          </Dialog>
 
           {/* Contact Section */}
           <section id="contact" className="py-16 bg-muted/30">
