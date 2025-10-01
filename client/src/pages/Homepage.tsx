@@ -71,8 +71,7 @@ export default function Homepage() {
     }) : "TBD",
     venue: event.location || "TBD",
     category: "Event",
-    registrationOpen: true, // Default to true
-    attendees: 0 // Default value
+    registrationOpen: true
   })) || [];
 
   // Transform leadership data for display
