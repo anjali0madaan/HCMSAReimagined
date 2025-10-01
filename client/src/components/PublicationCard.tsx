@@ -42,10 +42,9 @@ export default function PublicationCard({
 
   const handleDownload = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // In a real app, this would trigger the actual download
-    console.log(`Downloading: ${downloadUrl}`);
-    // For prototype purposes, we'll show an alert
-    alert(`Download would begin for: ${title}\nFile: ${fileFormat} (${fileSize})`);
+    if (downloadUrl && downloadUrl !== "#") {
+      window.open(downloadUrl, '_blank');
+    }
   };
 
   const handleCardClick = () => {
