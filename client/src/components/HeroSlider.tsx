@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Phone, Mail } from "lucide-react";
 import medicalBuildingImage from "@assets/generated_images/Medical_building_exterior_c7fc64c0.png";
 import conferenceImage from "@assets/generated_images/Medical_conference_meeting_e0b527cc.png";
 import emergencyDeptImage from "@assets/generated_images/Hospital_emergency_department_8e685018.png";
@@ -90,6 +90,24 @@ export default function HeroSlider() {
                 <p className="text-lg mb-6 text-gray-200" data-testid={`slide-description-${slide.id}`}>
                   {slide.description}
                 </p>
+                <div className="flex flex-wrap gap-4 mb-6">
+                  <a 
+                    href="tel:9646033033" 
+                    className="flex items-center gap-2 text-white hover:text-blue-200 transition-colors"
+                    data-testid="link-hero-phone"
+                  >
+                    <Phone className="h-5 w-5" />
+                    <span className="text-lg font-medium">9646033033</span>
+                  </a>
+                  <a 
+                    href="mailto:support@hcmsassociation.co.in" 
+                    className="flex items-center gap-2 text-white hover:text-blue-200 transition-colors"
+                    data-testid="link-hero-email"
+                  >
+                    <Mail className="h-5 w-5" />
+                    <span className="text-lg font-medium">support@hcmsassociation.co.in</span>
+                  </a>
+                </div>
                 <div className="flex space-x-4">
                   <Button 
                     size="lg" 
