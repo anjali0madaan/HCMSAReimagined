@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Footer() {
+  const [location, setLocation] = useLocation();
+
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Newsletter subscription submitted");
@@ -13,12 +16,51 @@ export default function Footer() {
     console.log(`${platform} social link clicked`);
   };
 
+  const handleQuickLinkClick = (sectionId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // Handle membership - redirect to external portal
+    if (sectionId === "membership") {
+      window.open("https://hcmsassociation.co.in", "_blank");
+      return;
+    }
+
+    // If not on homepage, navigate there first
+    if (location !== "/") {
+      setLocation("/");
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      }, 100);
+    } else {
+      // Already on homepage, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const headerOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    }
+  };
+
   const quickLinks = [
-    { name: "About HCMSA", href: "#about" },
-    { name: "Membership", href: "#membership" },
-    { name: "Events", href: "#events" },
-    { name: "News", href: "#news" },
-    { name: "Contact", href: "#contact" }
+    { name: "About HCMSA", sectionId: "about" },
+    { name: "Membership", sectionId: "membership" },
+    { name: "Events", sectionId: "events" },
+    { name: "News", sectionId: "news" },
+    { name: "Contact", sectionId: "contact" }
   ];
 
   const memberServices = [
@@ -82,10 +124,10 @@ export default function Footer() {
                     <Button 
                       variant="ghost" 
                       className="p-0 h-auto text-sm text-muted-foreground hover:text-primary justify-start"
-                      asChild
+                      onClick={(e) => handleQuickLinkClick(link.sectionId, e)}
                       data-testid={`footer-link-${link.name.toLowerCase().replace(/ /g, '-')}`}
                     >
-                      <a href={link.href}>{link.name}</a>
+                      {link.name}
                     </Button>
                   </li>
                 ))}
