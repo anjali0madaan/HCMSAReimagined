@@ -7,7 +7,8 @@ import {
   BookOpen, 
   Users,
   LayoutDashboard,
-  ExternalLink
+  ExternalLink,
+  Image
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { name: 'Events', href: '/admin/events', icon: Calendar },
     { name: 'Publications', href: '/admin/publications', icon: BookOpen },
     { name: 'Leadership', href: '/admin/leadership', icon: Users },
+    { name: 'Gallery', href: '/admin/gallery', icon: Image },
   ];
 
   const isActive = (href: string) => {

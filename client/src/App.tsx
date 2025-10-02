@@ -16,10 +16,12 @@ import NewsManagement from "@/pages/Admin/NewsManagement";
 import EventsManagement from "@/pages/Admin/EventsManagement";
 import PublicationsManagement from "@/pages/Admin/PublicationsManagement";
 import LeadershipManagement from "@/pages/Admin/LeadershipManagement";
+import GalleryManagement from "@/pages/Admin/GalleryManagement";
 import NewsForm from "@/pages/Admin/NewsForm";
 import EventsForm from "@/pages/Admin/EventsForm";
 import PublicationsForm from "@/pages/Admin/PublicationsForm";
 import LeadershipForm from "@/pages/Admin/LeadershipForm";
+import GalleryForm from "@/pages/Admin/GalleryForm";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -110,6 +112,23 @@ function Router() {
       <Route path="/admin/leadership/edit/:id">
         <AdminLayout>
           <LeadershipForm />
+        </AdminLayout>
+      </Route>
+      
+      {/* Gallery Management */}
+      <Route path="/admin/gallery">
+        <AdminLayout>
+          <GalleryManagement />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/gallery/new">
+        <AdminLayout>
+          <GalleryForm />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/gallery/:id">
+        <AdminLayout>
+          <GalleryForm />
         </AdminLayout>
       </Route>
       
