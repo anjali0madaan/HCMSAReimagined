@@ -171,6 +171,7 @@ export default function GalleryForm() {
                         placeholder="Description of the image or event..."
                         className="min-h-[100px]"
                         {...field}
+                        value={field.value || ""}
                         data-testid="input-description"
                       />
                     </FormControl>
