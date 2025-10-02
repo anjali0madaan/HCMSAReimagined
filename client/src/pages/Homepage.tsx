@@ -449,8 +449,8 @@ export default function Homepage() {
                   </div>
                   <h3 className="font-semibold mb-2">Contact Info</h3>
                   <p className="text-muted-foreground">
-                    Phone: +91-172-2864241<br />
-                    Email: info@hcmsa.gov.in<br />
+                    Phone: 9646033033<br />
+                    Email: support@hcmsassociation.co.in<br />
                     Website: hcmsassociation.co.in
                   </p>
                 </div>
@@ -461,9 +461,8 @@ export default function Homepage() {
                   </div>
                   <h3 className="font-semibold mb-2">Office Hours</h3>
                   <p className="text-muted-foreground">
-                    Monday - Friday<br />
-                    9:00 AM - 5:00 PM<br />
-                    Saturday: 9:00 AM - 1:00 PM
+                    Monday - Saturday<br />
+                    9:00 AM - 5:00 PM
                   </p>
                 </div>
               </div>
