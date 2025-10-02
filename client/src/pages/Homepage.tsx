@@ -438,8 +438,7 @@ export default function Homepage() {
                   <h3 className="font-semibold mb-2">Main Office</h3>
                   <p className="text-muted-foreground">
                     Civil Medical Services<br />
-                    Haryana Government<br />
-                    Chandigarh
+                    Haryana Government
                   </p>
                 </div>
                 
