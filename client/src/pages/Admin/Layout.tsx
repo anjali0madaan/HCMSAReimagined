@@ -8,16 +8,24 @@ import {
   Users,
   LayoutDashboard,
   ExternalLink,
-  Image
+  Image,
+  LogOut
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAdminAuth } from "@/contexts/AdminAuthContext";
 
 interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+  const { logout } = useAdminAuth();
+  
+  const handleLogout = () => {
+    logout();
+    setLocation('/admin/login');
+  };
   
   const navigation = [
     { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
@@ -53,6 +61,15 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                   View Website
                 </Button>
               </Link>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={handleLogout}
+                data-testid="button-logout"
+              >
+                <LogOut className="h-4 w-4 mr-2" />
+                Logout
+              </Button>
             </div>
           </div>
         </div>

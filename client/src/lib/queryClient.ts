@@ -18,11 +18,12 @@ export async function apiRequest(
     headers["Content-Type"] = "application/json";
   }
   
-  // Add API key for CMS write operations (POST, PUT, DELETE)
-  if (method !== 'GET' && url.includes('/api/cms/')) {
-    // For admin operations, we'll use a fixed API key
-    // In a production app, this would be handled more securely
-    headers["x-api-key"] = "hcmsa-cms-admin-key-2024";
+  // Add API key for CMS operations
+  if (url.includes('/api/cms/')) {
+    const apiKey = localStorage.getItem('admin_api_key');
+    if (apiKey) {
+      headers["x-api-key"] = apiKey;
+    }
   }
 
   const res = await fetch(url, {
@@ -42,8 +43,20 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(queryKey.join("/") as string, {
+    const url = queryKey.join("/") as string;
+    const headers: Record<string, string> = {};
+    
+    // Add API key for CMS operations
+    if (url.includes('/api/cms/')) {
+      const apiKey = localStorage.getItem('admin_api_key');
+      if (apiKey) {
+        headers["x-api-key"] = apiKey;
+      }
+    }
+    
+    const res = await fetch(url, {
       credentials: "include",
+      headers,
     });
 
     if (unauthorizedBehavior === "returnNull" && res.status === 401) {

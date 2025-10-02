@@ -3,6 +3,8 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
+import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
 import Homepage from "@/pages/Homepage";
 import News from "@/pages/News";
 import NewsDetail from "@/pages/NewsDetail";
@@ -10,6 +12,7 @@ import Events from "@/pages/Events";
 import EventDetail from "@/pages/EventDetail";
 import Publications from "@/pages/Publications";
 import PublicationDetail from "@/pages/PublicationDetail";
+import AdminLogin from "@/pages/Admin/Login";
 import AdminDashboard from "@/pages/Admin/Dashboard";
 import AdminLayout from "@/pages/Admin/Layout";
 import NewsManagement from "@/pages/Admin/NewsManagement";
@@ -35,101 +38,108 @@ function Router() {
       <Route path="/publications" component={Publications} />
       <Route path="/publications/:id" component={PublicationDetail} />
       
-      {/* Admin routes - explicit routes for better routing reliability */}
+      {/* Admin Login */}
+      <Route path="/admin/login" component={AdminLogin} />
+      
+      {/* Admin routes - protected with authentication */}
       <Route path="/admin">
-        <AdminLayout>
-          <AdminDashboard />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout>
+            <AdminDashboard />
+          </AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/">
-        <AdminLayout>
-          <AdminDashboard />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout>
+            <AdminDashboard />
+          </AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       
       {/* News Management */}
       <Route path="/admin/news">
-        <AdminLayout>
-          <NewsManagement />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><NewsManagement /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/news/new">
-        <AdminLayout>
-          <NewsForm />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><NewsForm /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/news/edit/:id">
-        <AdminLayout>
-          <NewsForm />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><NewsForm /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       
       {/* Events Management */}
       <Route path="/admin/events">
-        <AdminLayout>
-          <EventsManagement />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><EventsManagement /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/events/new">
-        <AdminLayout>
-          <EventsForm />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><EventsForm /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/events/edit/:id">
-        <AdminLayout>
-          <EventsForm />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><EventsForm /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       
       {/* Publications Management */}
       <Route path="/admin/publications">
-        <AdminLayout>
-          <PublicationsManagement />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><PublicationsManagement /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/publications/new">
-        <AdminLayout>
-          <PublicationsForm />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><PublicationsForm /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/publications/edit/:id">
-        <AdminLayout>
-          <PublicationsForm />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><PublicationsForm /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       
       {/* Leadership Management */}
       <Route path="/admin/leadership">
-        <AdminLayout>
-          <LeadershipManagement />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><LeadershipManagement /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/leadership/new">
-        <AdminLayout>
-          <LeadershipForm />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><LeadershipForm /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/leadership/edit/:id">
-        <AdminLayout>
-          <LeadershipForm />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><LeadershipForm /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       
       {/* Gallery Management */}
       <Route path="/admin/gallery">
-        <AdminLayout>
-          <GalleryManagement />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><GalleryManagement /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/gallery/new">
-        <AdminLayout>
-          <GalleryForm />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><GalleryForm /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       <Route path="/admin/gallery/:id">
-        <AdminLayout>
-          <GalleryForm />
-        </AdminLayout>
+        <ProtectedAdminRoute>
+          <AdminLayout><GalleryForm /></AdminLayout>
+        </ProtectedAdminRoute>
       </Route>
       
       {/* Fallback to 404 */}
@@ -141,10 +151,12 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <AdminAuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </AdminAuthProvider>
     </QueryClientProvider>
   );
 }

@@ -4,6 +4,7 @@
 Official website for Haryana Civil Medical Services Association (HCMSA) - a professional association serving civil medical officers and healthcare professionals in Haryana.
 
 ## Recent Changes
+- **Admin Login System Added** (Oct 2, 2025): Implemented secure login system for admin portal with API key authentication, protected routes, and logout functionality - admins must login at /admin/login before accessing CMS features
 - **Quick Actions Made Functional** (Oct 2, 2025): All four Quick Actions buttons now work - Membership redirects to external portal, while Events, Publications, and Contact smoothly scroll to their respective sections
 - **Logo Updated in Header and Footer** (Oct 2, 2025): Replaced HCMSA text with official logo image in both header left corner and footer organization section
 - **Gallery Management Added to Admin Portal** (Oct 2, 2025): Full CRUD functionality for managing gallery images with categories (events, activities, awards, conferences, other), display ordering, and publish/unpublish controls
@@ -39,7 +40,8 @@ Official website for Haryana Civil Medical Services Association (HCMSA) - a prof
 - **Frontend**: React with TypeScript, Tailwind CSS, shadcn/ui components
 - **Backend**: Express.js with TypeScript, ES modules with `.js` extensions for Vercel compatibility
 - **Database**: Supabase PostgreSQL (migrated from Neon) with Drizzle ORM
-- **CMS**: Admin dashboard with API key authentication (CMS_API_KEY)
+- **CMS**: Admin dashboard with login system and API key authentication (CMS_API_KEY)
+- **Authentication**: Context-based admin authentication with protected routes and session management
 - **Design**: Professional government-style design based on Haryana Health Department portal
 - **Integration**: Deep link integration with external membership portal
 - **Deployment**: Vercel-ready with ES module imports properly configured
@@ -54,7 +56,8 @@ Official website for Haryana Civil Medical Services Association (HCMSA) - a prof
 - Professional government-style branding
 - Dark/light mode support
 - Responsive design for mobile and desktop
-- Complete CMS admin portal for managing all content types (news, events, publications, leadership, gallery)
+- Complete CMS admin portal with login authentication for managing all content types (news, events, publications, leadership, gallery)
+- Protected admin routes with authentication and logout functionality
 
 ## File Structure
 - `client/src/components/`: Reusable React components
