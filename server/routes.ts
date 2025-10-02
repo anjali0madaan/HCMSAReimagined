@@ -6,7 +6,8 @@ import {
   insertNewsSchema, 
   insertEventSchema, 
   insertPublicationSchema, 
-  insertLeadershipSchema 
+  insertLeadershipSchema,
+  insertGallerySchema
 } from "../shared/schema.js";
 
 // Helper function to parse pagination parameters
@@ -360,15 +361,94 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Gallery endpoints with full CRUD
+  app.get("/api/cms/gallery", async (req, res) => {
+    try {
+      const published = req.query.published !== undefined ? req.query.published !== 'false' : undefined;
+      const { limit, offset } = getPaginationParams(req.query);
+      const gallery = await storage.getGallery(published, limit, offset);
+      res.json(gallery);
+    } catch (error) {
+      console.error('Failed to fetch gallery:', error);
+      res.status(500).json({ error: "Failed to fetch gallery" });
+    }
+  });
+
+  app.get("/api/cms/gallery/:id", async (req, res) => {
+    try {
+      const id = req.params.id;
+      const galleryItem = await storage.getGalleryItem(id);
+      if (galleryItem) {
+        res.json(galleryItem);
+      } else {
+        res.status(404).json({ error: "Gallery item not found" });
+      }
+    } catch (error) {
+      console.error('Failed to fetch gallery item:', error);
+      res.status(500).json({ error: "Failed to fetch gallery item" });
+    }
+  });
+
+  app.post("/api/cms/gallery", authenticateWrite, async (req, res) => {
+    try {
+      const validatedData = insertGallerySchema.parse(req.body);
+      const galleryItem = await storage.createGallery(validatedData);
+      res.status(201).json(galleryItem);
+    } catch (error: any) {
+      console.error('Failed to create gallery item:', error);
+      if (error.name === 'ZodError') {
+        res.status(400).json({ error: 'Invalid request data', details: error.errors });
+      } else {
+        res.status(500).json({ error: "Failed to create gallery item" });
+      }
+    }
+  });
+
+  app.put("/api/cms/gallery/:id", authenticateWrite, async (req, res) => {
+    try {
+      const id = req.params.id;
+      const validatedData = insertGallerySchema.partial().parse(req.body);
+      const updatedItem = await storage.updateGallery(id, validatedData);
+      if (updatedItem) {
+        res.json(updatedItem);
+      } else {
+        res.status(404).json({ error: "Gallery item not found" });
+      }
+    } catch (error: any) {
+      console.error('Failed to update gallery item:', error);
+      if (error.name === 'ZodError') {
+        res.status(400).json({ error: 'Invalid request data', details: error.errors });
+      } else {
+        res.status(500).json({ error: "Failed to update gallery item" });
+      }
+    }
+  });
+
+  app.delete("/api/cms/gallery/:id", authenticateWrite, async (req, res) => {
+    try {
+      const id = req.params.id;
+      const deleted = await storage.deleteGallery(id);
+      if (deleted) {
+        res.status(204).send();
+      } else {
+        res.status(404).json({ error: "Gallery item not found" });
+      }
+    } catch (error) {
+      console.error('Failed to delete gallery item:', error);
+      res.status(500).json({ error: "Failed to delete gallery item" });
+    }
+  });
+
   // Health check endpoint for CMS
   app.get("/api/cms/status", async (req, res) => {
     try {
       // Test all storage services
-      const [news, events, publications, leadership] = await Promise.all([
+      const [news, events, publications, leadership, gallery] = await Promise.all([
         storage.getNews(true, 1).then(() => 'ok').catch(() => 'error'),
         storage.getEvents(true, 1).then(() => 'ok').catch(() => 'error'),
         storage.getPublications(true, 1).then(() => 'ok').catch(() => 'error'),
-        storage.getLeadership(true, 1).then(() => 'ok').catch(() => 'error')
+        storage.getLeadership(true, 1).then(() => 'ok').catch(() => 'error'),
+        storage.getGallery(true, 1).then(() => 'ok').catch(() => 'error')
       ]);
 
       res.json({
@@ -377,7 +457,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           news,
           events,
           publications,
-          leadership
+          leadership,
+          gallery
         },
         mode: 'database',
         storage: 'postgresql'
