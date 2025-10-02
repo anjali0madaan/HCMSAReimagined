@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Search, User } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
-import hcmsaLogo from "@assets/hcmsa logo_1758028839137.jpeg";
+import hcmsaLogo from "@assets/hcms logo_1759392376892.jpg";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin } from "lucide-react";
 import { useLocation } from "wouter";
+import hcmsaLogo from "@assets/hcms logo_1759392376892.jpg";
 
 export default function Footer() {
   const [location, setLocation] = useLocation();
@@ -87,11 +88,13 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Organization info */}
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="bg-primary text-primary-foreground p-2 rounded-md">
-                  <span className="font-bold text-lg">HCMSA</span>
-                </div>
-                <span className="font-semibold">HCMSA</span>
+              <div className="flex items-center space-x-3 mb-4">
+                <img 
+                  src={hcmsaLogo} 
+                  alt="HCMSA Logo" 
+                  className="h-16 w-auto"
+                  data-testid="footer-logo"
+                />
               </div>
               <h3 className="font-semibold mb-3">Haryana Civil Medical Services Association</h3>
               <p className="text-sm text-muted-foreground mb-4">
