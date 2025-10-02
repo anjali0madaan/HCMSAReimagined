@@ -8,9 +8,11 @@ import {
   type Publication,
   type InsertPublication,
   type Leadership,
-  type InsertLeadership
+  type InsertLeadership,
+  type Gallery,
+  type InsertGallery
 } from "../shared/schema.js";
-import { users, news, events, publications, leadership } from "../shared/schema.js";
+import { users, news, events, publications, leadership, gallery } from "../shared/schema.js";
 import { eq, desc, asc, sql } from "drizzle-orm";
 import { db } from "./db.js";
 import bcrypt from "bcrypt";
@@ -54,6 +56,13 @@ export interface IStorage {
   createLeadership(leadership: InsertLeadership): Promise<Leadership>;
   updateLeadership(id: string, updates: Partial<InsertLeadership>): Promise<Leadership | undefined>;
   deleteLeadership(id: string): Promise<boolean>;
+
+  // Gallery operations
+  getGallery(published?: boolean, limit?: number, offset?: number): Promise<Gallery[]>;
+  getGalleryItem(id: string): Promise<Gallery | undefined>;
+  createGallery(gallery: InsertGallery): Promise<Gallery>;
+  updateGallery(id: string, updates: Partial<InsertGallery>): Promise<Gallery | undefined>;
+  deleteGallery(id: string): Promise<boolean>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -348,6 +357,49 @@ export class DatabaseStorage implements IStorage {
 
   async deleteLeadership(id: string): Promise<boolean> {
     const result = await db.delete(leadership).where(eq(leadership.id, id)).returning({ id: leadership.id });
+    return result.length > 0;
+  }
+
+  // Gallery operations with pagination
+  async getGallery(published?: boolean, limit = 50, offset = 0): Promise<Gallery[]> {
+    const query = db.select().from(gallery);
+    if (published !== undefined) {
+      return query.where(eq(gallery.published, published))
+        .orderBy(asc(gallery.order), desc(gallery.date_created))
+        .limit(limit)
+        .offset(offset);
+    }
+    return query.orderBy(asc(gallery.order), desc(gallery.date_created)).limit(limit).offset(offset);
+  }
+
+  async getGalleryItem(id: string): Promise<Gallery | undefined> {
+    const result = await db.select().from(gallery).where(eq(gallery.id, id)).limit(1);
+    return result[0];
+  }
+
+  async createGallery(galleryData: InsertGallery): Promise<Gallery> {
+    const result = await db.insert(gallery).values(galleryData).returning();
+    return result[0];
+  }
+
+  async updateGallery(id: string, updates: Partial<InsertGallery>): Promise<Gallery | undefined> {
+    const sanitizedUpdates = this.sanitizeUpdate(updates);
+    if (Object.keys(sanitizedUpdates).length === 0) return undefined;
+    
+    const updateData = {
+      ...sanitizedUpdates,
+      date_updated: sql`CURRENT_TIMESTAMP`
+    };
+    
+    const result = await db.update(gallery)
+      .set(updateData)
+      .where(eq(gallery.id, id))
+      .returning();
+    return result[0];
+  }
+
+  async deleteGallery(id: string): Promise<boolean> {
+    const result = await db.delete(gallery).where(eq(gallery.id, id)).returning({ id: gallery.id });
     return result.length > 0;
   }
 

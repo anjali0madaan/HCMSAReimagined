@@ -73,6 +73,18 @@ export const leadership = pgTable("leadership", {
   date_updated: timestamp("date_updated", { withTimezone: true }).default(sql`CURRENT_TIMESTAMP`).notNull()
 });
 
+export const gallery = pgTable("gallery", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  description: text("description"),
+  image: text("image").notNull(),
+  category: text("category", { enum: ["events", "activities", "awards", "conferences", "other"] }).notNull(),
+  "order": integer("order").default(0).notNull(),
+  published: boolean("published").default(false).notNull(),
+  date_created: timestamp("date_created", { withTimezone: true }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+  date_updated: timestamp("date_updated", { withTimezone: true }).default(sql`CURRENT_TIMESTAMP`).notNull()
+});
+
 // Insert schemas for CMS content
 export const insertNewsSchema = createInsertSchema(news).omit({
   id: true,
@@ -101,6 +113,12 @@ export const insertLeadershipSchema = createInsertSchema(leadership).omit({
   date_updated: true
 });
 
+export const insertGallerySchema = createInsertSchema(gallery).omit({
+  id: true,
+  date_created: true,
+  date_updated: true
+});
+
 // Types for CMS content
 export type InsertNews = z.infer<typeof insertNewsSchema>;
 export type News = typeof news.$inferSelect;
@@ -113,3 +131,6 @@ export type Publication = typeof publications.$inferSelect;
 
 export type InsertLeadership = z.infer<typeof insertLeadershipSchema>;
 export type Leadership = typeof leadership.$inferSelect;
+
+export type InsertGallery = z.infer<typeof insertGallerySchema>;
+export type Gallery = typeof gallery.$inferSelect;
