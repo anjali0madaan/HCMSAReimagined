@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 
 interface AdminAuthContextType {
   isAuthenticated: boolean;
-  login: (apiKey: string) => Promise<boolean>;
+  login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
   getApiKey: () => string | null;
 }
@@ -21,16 +21,20 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const login = async (apiKey: string): Promise<boolean> => {
+  const login = async (username: string, password: string): Promise<boolean> => {
     try {
-      const response = await fetch('/api/cms/status', {
+      // Send credentials to backend for validation
+      const response = await fetch('/api/cms/verify-auth', {
+        method: 'POST',
         headers: {
-          'x-api-key': apiKey,
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
-        localStorage.setItem(ADMIN_KEY_STORAGE, apiKey);
+        const data = await response.json();
+        localStorage.setItem(ADMIN_KEY_STORAGE, data.apiKey);
         setIsAuthenticated(true);
         return true;
       }

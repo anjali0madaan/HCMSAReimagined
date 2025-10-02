@@ -9,7 +9,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Lock, AlertCircle } from 'lucide-react';
 
 export default function AdminLogin() {
-  const [apiKey, setApiKey] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAdminAuth();
@@ -20,14 +21,14 @@ export default function AdminLogin() {
     setError('');
     setIsLoading(true);
 
-    const success = await login(apiKey);
+    const success = await login(username, password);
     setIsLoading(false);
 
     if (success) {
       setLocation('/admin');
     } else {
-      setError('Invalid API key. Please try again.');
-      setApiKey('');
+      setError('Invalid username or password. Please try again.');
+      setPassword('');
     }
   };
 
@@ -42,22 +43,36 @@ export default function AdminLogin() {
           </div>
           <CardTitle className="text-2xl text-center">Admin Login</CardTitle>
           <CardDescription className="text-center">
-            Enter your API key to access the admin portal
+            Enter your credentials to access the admin portal
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="apiKey">API Key</Label>
+              <Label htmlFor="username">Username</Label>
               <Input
-                id="apiKey"
-                type="password"
-                placeholder="Enter your admin API key"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
+                id="username"
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 disabled={isLoading}
-                data-testid="input-api-key"
+                data-testid="input-username"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={isLoading}
+                data-testid="input-password"
               />
             </div>
 

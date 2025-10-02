@@ -20,6 +20,35 @@ function getPaginationParams(query: any) {
 export async function registerRoutes(app: Express): Promise<Server> {
   // CMS API Routes
   
+  // Admin login verification endpoint
+  app.post("/api/cms/verify-auth", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      const validApiKey = process.env.CMS_API_KEY;
+      
+      // Hardcoded admin credentials (in production, use proper user management)
+      const ADMIN_USERNAME = 'Admin';
+      const ADMIN_PASSWORD = 'admin123';
+      
+      if (!validApiKey) {
+        res.status(503).json({ error: 'CMS not configured' });
+        return;
+      }
+      
+      // Verify username and password
+      if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
+        res.status(401).json({ error: 'Invalid credentials' });
+        return;
+      }
+      
+      // Return the API key for the frontend to use
+      res.json({ apiKey: validApiKey });
+    } catch (error) {
+      console.error('Auth verification error:', error);
+      res.status(500).json({ error: "Authentication failed" });
+    }
+  });
+  
   // Simple API key authentication middleware for write operations
   const authenticateWrite = (req: any, res: any, next: any) => {
     const apiKey = req.headers['x-api-key'];
