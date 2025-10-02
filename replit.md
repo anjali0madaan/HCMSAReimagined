@@ -4,6 +4,8 @@
 Official website for Haryana Civil Medical Services Association (HCMSA) - a professional association serving civil medical officers and healthcare professionals in Haryana.
 
 ## Recent Changes
+- **Gallery Management Added to Admin Portal** (Oct 2, 2025): Full CRUD functionality for managing gallery images with categories (events, activities, awards, conferences, other), display ordering, and publish/unpublish controls
+- **Footer Quick Links Activated**: Made all footer Quick Links functional with smooth scroll navigation to homepage sections and external portal redirect for Membership
 - **Vercel Serverless Fix** (Sept 30, 2025): Fixed module resolution for Vercel deployment - replaced all `@shared/schema` TypeScript path aliases with relative imports (`../shared/schema.js`) in server files (routes.ts, storage.ts, db.ts) for proper Node.js ES module resolution in serverless environment
 - **Vercel API Handler Created**: Built `api/index.ts` as serverless function wrapper for Express app compatible with Vercel's serverless platform
 - **Vercel Configuration**: Added vercel.json with proper routing configuration for API endpoints and static files
@@ -46,16 +48,21 @@ Official website for Haryana Civil Medical Services Association (HCMSA) - a prof
 - Leadership profiles with contact information
 - Events calendar with registration capabilities
 - Publications and resources section
-- Photo gallery
+- Photo gallery with admin management (create, edit, delete, categorize, publish/unpublish)
 - Professional government-style branding
 - Dark/light mode support
 - Responsive design for mobile and desktop
+- Complete CMS admin portal for managing all content types (news, events, publications, leadership, gallery)
 
 ## File Structure
 - `client/src/components/`: Reusable React components
 - `client/src/pages/`: Page components
+- `client/src/pages/Admin/`: Admin portal pages (Dashboard, News, Events, Publications, Leadership, Gallery management)
 - `client/src/components/examples/`: Component examples for development
 - `attached_assets/generated_images/`: Generated images for the website
+- `shared/schema.ts`: Database schema with Drizzle ORM (users, news, events, publications, leadership, gallery)
+- `server/routes.ts`: API routes for all CMS content with authentication
+- `server/storage.ts`: Database storage interface with CRUD operations
 
 ## External Dependencies
 - Membership portal: hcmsassociation.co.in
