@@ -177,7 +177,25 @@ export default function Homepage() {
   };
 
   const handleQuickAction = (action: string) => {
-    console.log(`Quick action clicked: ${action}`);
+    // Handle membership - redirect to external portal
+    if (action === "membership") {
+      const newWindow = window.open("https://hcmsassociation.co.in", "_blank");
+      if (newWindow) newWindow.opener = null;
+      return;
+    }
+
+    // For other actions, scroll to the corresponding section
+    const sectionId = action; // events, publications, contact
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
   };
 
   // Show loading state if any data is still loading
