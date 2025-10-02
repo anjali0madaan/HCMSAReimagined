@@ -43,7 +43,8 @@ export default function PublicationCard({
   const handleDownload = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (downloadUrl && downloadUrl !== "#") {
-      window.open(downloadUrl, '_blank');
+      const newWindow = window.open(downloadUrl, '_blank');
+      if (newWindow) newWindow.opener = null;
     }
   };
 
