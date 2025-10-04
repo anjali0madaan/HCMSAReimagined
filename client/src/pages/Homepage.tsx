@@ -45,7 +45,7 @@ export default function Homepage() {
   // Fetch leadership from database
   const { data: leadershipData, isLoading: leadershipLoading } = useQuery<Leadership[]>({
     queryKey: ['/api/cms/leadership'],
-    select: (data) => data?.filter(leader => leader.active).slice(0, 3) || []
+    select: (data) => data?.filter(leader => leader.active).slice(0, 4) || []
   });
 
   // Transform news data for display
