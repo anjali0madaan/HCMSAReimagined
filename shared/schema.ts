@@ -105,6 +105,8 @@ export const insertPublicationSchema = createInsertSchema(publications).omit({
   id: true,
   date_created: true,
   date_updated: true
+}).extend({
+  publication_date: z.coerce.date().optional().nullable()
 });
 
 export const insertLeadershipSchema = createInsertSchema(leadership).omit({
