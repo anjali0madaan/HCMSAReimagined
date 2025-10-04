@@ -83,7 +83,7 @@ export default function PublicationsForm() {
       // Convert string back to Date for API
       const apiData = {
         ...data,
-        publication_date: data.publication_date ? new Date(data.publication_date) : null,
+        publication_date: data.publication_date && data.publication_date.trim() ? new Date(data.publication_date) : null,
       };
       return apiRequest('POST', '/api/cms/publications', apiData);
     },
@@ -107,7 +107,7 @@ export default function PublicationsForm() {
       // Convert string back to Date for API
       const apiData = {
         ...data,
-        publication_date: data.publication_date ? new Date(data.publication_date) : null,
+        publication_date: data.publication_date && data.publication_date.trim() ? new Date(data.publication_date) : null,
       };
       return apiRequest('PUT', `/api/cms/publications/${id}`, apiData);
     },
