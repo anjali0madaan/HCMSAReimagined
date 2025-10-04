@@ -4,6 +4,7 @@
 Official website for Haryana Civil Medical Services Association (HCMSA) - a professional association serving civil medical officers and healthcare professionals in Haryana.
 
 ## Recent Changes
+- **Replit Environment Setup** (Oct 4, 2025): Successfully migrated to Replit environment with Replit PostgreSQL database - updated all database configuration from SUPABASE_DATABASE_URL to DATABASE_URL, pushed schema using Drizzle, configured workflow for port 5000 with webview output, and verified application runs successfully
 - **Admin Login System Added** (Oct 2, 2025): Implemented secure login system for admin portal with API key authentication, protected routes, and logout functionality - admins must login at /admin/login before accessing CMS features
 - **Quick Actions Made Functional** (Oct 2, 2025): All four Quick Actions buttons now work - Membership redirects to external portal, while Events, Publications, and Contact smoothly scroll to their respective sections
 - **Logo Updated in Header and Footer** (Oct 2, 2025): Replaced HCMSA text with official logo image in both header left corner and footer organization section
@@ -39,12 +40,12 @@ Official website for Haryana Civil Medical Services Association (HCMSA) - a prof
 ## Project Architecture
 - **Frontend**: React with TypeScript, Tailwind CSS, shadcn/ui components
 - **Backend**: Express.js with TypeScript, ES modules with `.js` extensions for Vercel compatibility
-- **Database**: Supabase PostgreSQL (migrated from Neon) with Drizzle ORM
+- **Database**: Replit PostgreSQL with Drizzle ORM (migrated from Supabase)
 - **CMS**: Admin dashboard with login system and API key authentication (CMS_API_KEY)
 - **Authentication**: Context-based admin authentication with protected routes and session management
 - **Design**: Professional government-style design based on Haryana Health Department portal
 - **Integration**: Deep link integration with external membership portal
-- **Deployment**: Vercel-ready with ES module imports properly configured
+- **Deployment**: Configured for Replit autoscale deployment with build and production start scripts
 
 ## Features
 - Hero slider with HCMSA activities and achievements
